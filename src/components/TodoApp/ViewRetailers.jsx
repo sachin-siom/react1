@@ -18,12 +18,15 @@ class ViewRetailers extends Component {
 
     setRetailerStatus(thisRow){
         let url = ''
-        if(thisRow.button === 'enable' ){
+        if(thisRow.id === 1)
+          return
+        if(thisRow.status === false ){
             url = `${enableRetailer}`
-        } else if (thisRow.button === 'disable' ) {
+        } else if (thisRow.status === true ) {
             url = `${disableRetailer}`
         }
         let retailId = thisRow.retailId
+        this.setState({data:[]})
         AuthenticationService.executeRetailerStatusUpdate(url, retailId)
         .then(response =>  {})
         .catch(error => {console.log('There is issue while loading reatiler data')})
@@ -42,53 +45,26 @@ class ViewRetailers extends Component {
             { field: 'balance', headerName: 'Balance' , width: 200},
             { field: 'status', headerName: 'status', width: 200},
             {
-                field: 'enable',
-                headerName: 'Enable',
+                field: 'Change Status',
+                headerName: 'Change Status',
                 sortable: false,
                 renderCell: (params) => {
                   const onClick = (e) => {
                     e.stopPropagation(); // don't select this row after clicking
-            
                     const api: GridApi = params.api;
                     const thisRow: Record<string, GridCellValue> = {};
-            
+                    
                     api
                       .getAllColumns()
                       .filter((c) => c.field !== '__check__' && !!c)
                       .forEach(
                         (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
                       );
-                      thisRow['button'] = params.field;
                       this.setRetailerStatus(thisRow);
                     //return alert(JSON.stringify(thisRow, null, 4));
                   };
-            
-                  return <Button onClick={onClick}>Enable</Button>;
-                },
-              },
-              {
-                field: 'disable',
-                headerName: 'Disable',
-                sortable: false,
-                renderCell: (params) => {
-                  const onClick = (e) => {
-                    e.stopPropagation(); // don't select this row after clicking
-            
-                    const api: GridApi = params.api;
-                    const thisRow: Record<string, GridCellValue> = {};
-            
-                    api
-                      .getAllColumns()
-                      .filter((c) => c.field !== '__check__' && !!c)
-                      .forEach(
-                        (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
-                      );
-                      thisRow['button'] = params.field;
-                      this.setRetailerStatus(thisRow);
-                  };
-            
-                  return <Button onClick={onClick}>Disable</Button>;
-                },
+                  return <Button onClick={onClick}>Modify Status</Button>;
+                }, width: 300
               }
         ]
         return (

@@ -1,7 +1,6 @@
 
 import React, { Component } from "react";
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom' 
-import HelloWorldService from "../api/todo/HelloWorldService.js";
 
 class WelcomeComponent extends Component {
 
@@ -24,10 +23,6 @@ constructor(props){
             Welcome {this.props.params.name} you can manage your points here
             </div>
             <div className="container">
-                click here to get customized welcome message
-                    <button onClick={this.retirveWelcomeMessage} className = "btn btn-success"> Get Welcome Msg</button>
-            </div>
-            <div className="container">
                    {this.state.welcomeMsg}
             </div>
             </>
@@ -35,9 +30,7 @@ constructor(props){
     }
 
     retirveWelcomeMessage(){
-        HelloWorldService.executeHelloWorldBeanService()
-        .then(response => this.handleSuccessfulResponse(response))
-        .catch(error => this.handlerError(error))
+        this.setState({welcomeMsg: 'Welocme to the home'})
     }
 
     handleSuccessfulResponse(response){

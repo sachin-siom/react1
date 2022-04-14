@@ -51,6 +51,8 @@ class AddRetailer extends Component {
                  onChange={this.setProperty} />
                 <TextField id="outlined-basic" label="Password" variant="outlined" name="password" required value={this.state.password}
                  onChange={this.setProperty} />
+                 <TextField id="outlined-basic" label="Commission %" variant="outlined" name="profitPercentage" required value={this.state.profitPercentage}
+                 onChange={this.setProperty} />
                 <div>
                     <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit}>
                         Add Retailer

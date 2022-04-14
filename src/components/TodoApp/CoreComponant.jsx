@@ -15,6 +15,7 @@ import ViewRetailers from './ViewRetailers.jsx'
 import AddRetailerBalance from './AddRetailerBalance.jsx'
 import ManagePoints from './ManagePoints.jsx'
 import RetailerDropDown from './RetailerDropDown.jsx'
+import SideBar from './SideBar.jsx'
 
 
 class CoreComponant extends Component{

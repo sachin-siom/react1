@@ -39,7 +39,7 @@ class AuthenticationService {
     registerSuccessfulLogin(username, password){
         let basicAuth = this.createBasicAuthToken(username, password)
         sessionStorage.setItem('authenticatedUser', basicAuth)
-        this.setupAxiosInterceptor(basicAuth);
+       // this.setupAxiosInterceptor(basicAuth);
     }
 
     logout(){
