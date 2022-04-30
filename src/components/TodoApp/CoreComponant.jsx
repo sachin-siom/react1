@@ -15,7 +15,17 @@ import ViewRetailers from './ViewRetailers.jsx'
 import AddRetailerBalance from './AddRetailerBalance.jsx'
 import ManagePoints from './ManagePoints.jsx'
 import RetailerDropDown from './RetailerDropDown.jsx'
-import SideBar from './SideBar.jsx'
+import Users from '../components/users.jsx'
+import Commissionreport from "../components/commissionreport.jsx";
+import Liveplayer from "../components/liveplayer.jsx";
+import Adminreport from "../components/adminreport.jsx";
+import Fairplaymanagement from "../components/fairplaymanagement.jsx";
+import Operator from "../components/operator.jsx";
+import Support from "../components/support.jsx";
+import Resetmac from "../components/resetmac.jsx";
+import Settings from "../components/settings.jsx";
+import Drawdetails from "../components/reports/drawdetails.jsx";
+import RetailerTicket from "../components/reports/retailerTickets.jsx";
 
 
 class CoreComponant extends Component{
@@ -40,6 +50,22 @@ class CoreComponant extends Component{
                         <Route path="/drawDetails" element={<AuthenticatedRoute><ListTodosComponentWithParams /></AuthenticatedRoute>} />
                         <Route path="/retailerTickets" element={<AuthenticatedRoute><RetailerDetailsComponentWithParams /></AuthenticatedRoute>} />
                         <Route path="/logout" element={<AuthenticatedRoute><LogoutComponent /> </AuthenticatedRoute>}/>
+                        
+                        {/* SideBar Components Routing */}
+                        <Route path="/users" element={<AuthenticatedRoute><Users/></AuthenticatedRoute>} />
+                        <Route path="/commissionreport" element={<AuthenticatedRoute><Commissionreport/></AuthenticatedRoute>} />
+                        <Route path="/liveplayer" element={<AuthenticatedRoute><Liveplayer/></AuthenticatedRoute>} />
+                        <Route path="/adminreport" element={<AuthenticatedRoute><Adminreport/></AuthenticatedRoute>} />
+                        <Route path="/fairplaymanagement" element={<AuthenticatedRoute><Fairplaymanagement/></AuthenticatedRoute>} />
+                        <Route path="/operator" element={<AuthenticatedRoute><Operator/></AuthenticatedRoute>} />
+                        <Route path="/support" element={<AuthenticatedRoute><Support/></AuthenticatedRoute>} />
+                        <Route path="/resetmac" element={<AuthenticatedRoute><Resetmac/></AuthenticatedRoute>} />
+                        <Route path="/settings" element={<AuthenticatedRoute><Settings/></AuthenticatedRoute>} />
+                        <Route path="/reports/drawdetails" element={<AuthenticatedRoute><Drawdetails/></AuthenticatedRoute>} />
+                        <Route path="/reports/retailerticket" element={<AuthenticatedRoute><RetailerTicket/></AuthenticatedRoute>} />
+
+
+
                         <Route path="*" element={<ErrorComponant/>}/>
                     </Routes>
                     <FooterComponent/>

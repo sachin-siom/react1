@@ -50,7 +50,7 @@ class RetailerDropDown extends Component {
         return (
             <div>
                 {this.state.dataFetchError && <div className="alert alert-warning">Unable to fetch the Retail Id's</div>}
-                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                <InputLabel style={{ margin: 8, fontSize:18}} variant="standard" htmlFor="uncontrolled-native">
                     Retails Ids
                 </InputLabel>
                 <NativeSelect

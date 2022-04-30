@@ -2,8 +2,21 @@ import React, { Component } from "react";
 import AuthenticationService from "./AuthenticationService.js";
 import {getAllRetailer} from './Constant'
 import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
-import Button from '@mui/material/Button';
 import {enableRetailer, disableRetailer} from './Constant'
+
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Radio,
+  Divider,
+  FormControlLabel,
+  Grid,
+  Typography,
+  TextField,
+} from "@mui/material";
 
 class ViewRetailers extends Component {
 
@@ -63,12 +76,37 @@ class ViewRetailers extends Component {
                       this.setRetailerStatus(thisRow);
                     //return alert(JSON.stringify(thisRow, null, 4));
                   };
-                  return <Button onClick={onClick}>Modify Status</Button>;
-                }, width: 300
+                  return <Button 
+                    variant="contained"
+                    onClick={onClick}
+                    style={{fontSize: '13px', padding: 5, margin: '0px'}}
+                  >Modify Status</Button>;
+                }, width: 250
               }
         ]
         return (
                 <div>
+                  <center>
+                  <Card style={{width:'75%',marginTop:25}} >
+        <CardHeader
+          // subheader="Manage "
+          title="View Retailers"
+          />
+        <Divider />
+        <CardContent
+          className="table-responsive"
+        >
+          <Grid container spacing={6} wrap="wrap">
+            <Grid
+              item
+              md={16}
+              sm={18}
+              // sx={{
+              //   display: "flex",
+              //   flexDirection: "column",
+              // }}
+              xs={20}
+            >
                   {this.state.dataFetchError && <div className="alert alert-warning">Unable to fetch the Retail Id's Data</div>}
                     <div style={{ height: 700, width: '100%' , alignContent: 'center', alignSelf: 'center'}}>
                     <DataGrid
@@ -78,6 +116,11 @@ class ViewRetailers extends Component {
                         pageSize={100}
                     />
                 </div>
+                </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+      </center>
             </div>
         )
     }

@@ -1,9 +1,20 @@
 import React, { Component } from "react";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import AuthenticationService from "./AuthenticationService";
 import { addRetailerBalance } from './Constant'
 import RetailerDropDown from './RetailerDropDown.jsx'
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Radio,
+  Divider,
+  FormControlLabel,
+  Grid,
+  Typography,
+  TextField,
+} from "@mui/material";
 
 class AddRetailerBalance extends Component {
 
@@ -50,18 +61,42 @@ class AddRetailerBalance extends Component {
     render() {
         return (
             <>
+            <center>
+            <Card style={{ width: "75%", marginTop: 25 }}>
+            <CardHeader
+              // subheader="Manage "
+              title="Add Retailer Balance"
+            />
+            <Divider />
+            <CardContent className="table-responsive">
+              <Grid container spacing={6} wrap="wrap">
+                <Grid
+                  item
+                  md={16}
+                  sm={18}
+                  // sx={{
+                  //   display: "flex",
+                  //   flexDirection: "column",
+                  // }}
+                  xs={20}
+                >
             <RetailerDropDown parentCallback = {this.handleCallback}/>
-            <TextField id="outlined-basic" label="New Balance" variant="outlined" name="balance" required value={this.state.balance}
+            <TextField style={{width:'35%'}} id="outlined-basic" label="New Balance" variant="outlined" name="balance" required value={this.state.balance}
              onChange={this.setProperty} />
             <div>
-                <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit}>
+                <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit} style={{margin:8}}>
                     Add Balance
                 </Button>
-                <Button variant="contained" onClick={this.handleClose}>
+                <Button variant="contained" onClick={this.handleClose} style={{margin:8}}>
                     Reset
                 </Button>
 
             </div>
+            </Grid>
+            </Grid>
+            </CardContent>
+            </Card>
+            </center>
             </>
         )
     }
