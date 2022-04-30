@@ -26,6 +26,7 @@ import Resetmac from "../components/resetmac.jsx";
 import Settings from "../components/settings.jsx";
 import Drawdetails from "../components/reports/drawdetails.jsx";
 import RetailerTicket from "../components/reports/retailerTickets.jsx";
+import CommissionReport from '../TodoApp/CommissionReport.jsx'
 
 
 class CoreComponant extends Component{
@@ -49,6 +50,7 @@ class CoreComponant extends Component{
 
                         <Route path="/drawDetails" element={<AuthenticatedRoute><ListTodosComponentWithParams /></AuthenticatedRoute>} />
                         <Route path="/retailerTickets" element={<AuthenticatedRoute><RetailerDetailsComponentWithParams /></AuthenticatedRoute>} />
+                        <Route path="/CommissionReport" element={<AuthenticatedRoute><CommissionReport/></AuthenticatedRoute>} />
                         <Route path="/logout" element={<AuthenticatedRoute><LogoutComponent /> </AuthenticatedRoute>}/>
                         
                         {/* SideBar Components Routing */}
@@ -63,7 +65,7 @@ class CoreComponant extends Component{
                         <Route path="/settings" element={<AuthenticatedRoute><Settings/></AuthenticatedRoute>} />
                         <Route path="/reports/drawdetails" element={<AuthenticatedRoute><Drawdetails/></AuthenticatedRoute>} />
                         <Route path="/reports/retailerticket" element={<AuthenticatedRoute><RetailerTicket/></AuthenticatedRoute>} />
-
+                        
 
 
                         <Route path="*" element={<ErrorComponant/>}/>
