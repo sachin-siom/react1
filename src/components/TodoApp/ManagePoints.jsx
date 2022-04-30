@@ -99,7 +99,7 @@ class ManagePoints extends Component {
       .then((response) => {
         console.log("data updated successsfully");
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }
 
   render() {
@@ -110,7 +110,7 @@ class ManagePoints extends Component {
           <Card style={{ width: "75%", marginTop: 25 }}>
             <CardHeader
               // subheader="Manage "
-              title="Manage Points"
+              title="Include Number"
             />
             <Divider />
             <CardContent className="table-responsive">
@@ -119,17 +119,13 @@ class ManagePoints extends Component {
                   item
                   md={16}
                   sm={18}
-                  // sx={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  // }}
                   xs={20}
                 >
                   <div>
                     <TextField
                       required
                       id="outlined-name"
-                      label="Add Tag"
+                      label="Include number in next draw"
                       name="username"
                       tags={tags}
                       suggestions={suggestions}

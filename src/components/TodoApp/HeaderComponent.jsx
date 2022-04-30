@@ -17,7 +17,7 @@ const HeaderComponent = () => {
         return (
             <header>
                 <nav className="navbar navbar-expand-md " style={{backgroundColor:'#002776'}}>
-                    <div> <a className="navbar-brand">Grocerytest app</a></div>
+                    <div> <a className="navbar-brand">Bhagyalaxmi Lottery</a></div>
                     <ul className="navbar-nav-main">
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/welcome/test">Home</Link></li>}
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/addRetailer">Add Retailer</Link></li>}
@@ -27,9 +27,9 @@ const HeaderComponent = () => {
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/drawDetails">Draw Details</Link></li>}
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/retailerTickets">Retailer Tickets</Link></li>}
                     </ul>
-                    <ul  className="navbar-nav justify-content-end">
+                    {/*<ul  className="navbar-nav justify-content-end">
                         {!isUserLoggedIn && <li className="nav-link login"><Link className="nav-link" to="/login" style={{right:0}}>Login</Link></li>}  
-                    </ul>
+                    </ul>*/}
 
                     <div className="app__navbar-smallscreen">
 
