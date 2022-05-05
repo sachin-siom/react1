@@ -24,9 +24,10 @@ const HeaderComponent = () => {
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/viewRetailers">View Retailer</Link></li>}
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/addRetailerBalance">Add Retailer Balance</Link></li>}
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/managePoints">Manage points</Link></li>}
+                        {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/CommissionReport">Commission Report</Link></li>}
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/drawDetails">Draw Details</Link></li>}
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/retailerTickets">Retailer Tickets</Link></li>}
-                        {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/CommissionReport">Commission Report</Link></li>}
+                        
                     </ul>
                     {/*<ul  className="navbar-nav justify-content-end">
                         {!isUserLoggedIn && <li className="nav-link login"><Link className="nav-link" to="/login" style={{right:0}}>Login</Link></li>}  

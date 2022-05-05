@@ -64,20 +64,20 @@ class CommissionReport extends React.Component {
   }
 
   populateDataInTable(response) {
-    console.log(response.data);
+    console.log(response.data.commissionResponseList);
     this.setState({
-      data: response.data,
+      data: response.data.commissionResponseList,
     });
   }
 
   render() {
     const columns = [
-      { field: "commissionResponseList.retailId", headerName: "Retailer Id", width: 200 },
-      { field: "commissionResponseList.totalPointsPlayed", headerName: "Total Points played", width: 200 },
-      { field: "commissionResponseList.pointsWon", headerName: "Total points won", width: 200 },
-      { field: "commissionResponseList.commissionPercentage", headerName: "Commission Percentage", width: 200 },
-      { field: "commissionResponseList.commission", headerName: "Total Commission", width: 200 },
-      { field: "commissionResponseList.adminProfit", headerName: "Admin Profit", width: 200 },
+      { field: "retailId", headerName: "Retailer Id", width: 200 },
+      { field: "totalPointsPlayed", headerName: "Total Points played", width: 200 },
+      { field: "pointsWon", headerName: "Total points won", width: 200 },
+      { field: "commissionPercentage", headerName: "Commission Percentage", width: 200 },
+      { field: "commission", headerName: "Total Commission", width: 200 },
+      { field: "adminProfit", headerName: "Admin Profit", width: 200 },
     ];
 
     return (
@@ -139,6 +139,7 @@ class CommissionReport extends React.Component {
                   }}
                 >
                   <DataGrid
+                    getRowId={(row) => row.retailId}
                     rows={this.state.data}
                     columns={columns}
                     pageSize={100}
