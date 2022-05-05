@@ -43,8 +43,8 @@ class AddRetailerBalance extends Component {
         console.log(balanceData)
         console.log(this.state.retailerid)
         AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
-            .then((response) => { })
-            .catch((error) => { })
+            .then((response) => { console.log('balance updated successfully') })
+            .catch((error) => {console.log('balance update failure' + error) })
     }
 
 
