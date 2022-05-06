@@ -43,8 +43,8 @@ class AddRetailerBalance extends Component {
         console.log(balanceData)
         console.log(this.state.retailerid)
         AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
-            .then((response) => { console.log('balance updated successfully') })
-            .catch((error) => {console.log('balance update failure' + error) })
+            .then((response) => {  this.setState({balanceUpdated: true}); console.log('balance updated successfully') })
+            .catch((error) => { this.setState({balanceNotUpdated: true}); console.log('balance update failure' + error) })
     }
 
 
@@ -68,6 +68,8 @@ class AddRetailerBalance extends Component {
               title="Add Retailer Balance"
             />
             <Divider />
+            {this.state.balanceUpdated && (<div className="alert alert-success">Balance Updated</div>)}
+            {this.state.balanceNotUpdated && (<div className="alert alert-danger">Balance Not Updated</div>)}
             <CardContent className="table-responsive">
               <Grid container spacing={6} wrap="wrap">
                 <Grid

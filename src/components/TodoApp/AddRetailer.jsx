@@ -17,6 +17,7 @@ class AddRetailer extends Component {
     this.state = {
       userName: "",
       password: "",
+      retailer: false,
       profitPercentage: "",
     };
     this.handleClose = this.handleClose.bind(this);
@@ -39,8 +40,8 @@ class AddRetailer extends Component {
       username: this.state.userName,
     };
     AuthenticationService.addRetailer(addRetailer, newRetailerData)
-      .then((response) => {})
-      .catch((error) => {});
+      .then((response) => { this.setState({retailer: true}) })
+      .catch((error) => { });
     console.log(
       this.state.userName,
       this.state.password,
@@ -61,6 +62,7 @@ class AddRetailer extends Component {
               // subheader="Manage "
               title="Add Retailer"
             />
+            {this.state.retailer && (<div className="alert alert-success">New Retailer added Successfully</div>)}
             <Divider />
             <CardContent className="table-responsive">
               <Grid container spacing={6} wrap="wrap">
@@ -83,7 +85,7 @@ class AddRetailer extends Component {
                       required
                       value={this.state.userName}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width:'25%' }}
+                      style={{ margin: 8, width: '25%' }}
                     />
                     <TextField
                       id="outlined-basic"
@@ -94,7 +96,7 @@ class AddRetailer extends Component {
                       required
                       value={this.state.password}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width:'25%'  }}
+                      style={{ margin: 8, width: '25%' }}
                     />
                     <TextField
                       id="outlined-basic"
@@ -104,7 +106,7 @@ class AddRetailer extends Component {
                       required
                       value={this.state.profitPercentage}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width:'25%'  }}
+                      style={{ margin: 8, width: '25%' }}
                     />
                     <div>
                       <Button
