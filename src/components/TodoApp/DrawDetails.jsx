@@ -39,18 +39,18 @@ class DrawDetails extends React.Component {
 
   render() {
     const columns = [
-      { field: "id", headerName: "ID", width: 200 },
-      { field: "draw", headerName: "Draw Time", width: 200 },
-      { field: "setPoints", headerName: "Set Points", width: 200 },
-      { field: "wonPoints", headerName: "Won Points", width: 200 },
-      { field: "betCount", headerName: "Total Bet Count", width: 200 },
-      { field: "winCount", headerName: "Bet Won Count", width: 200 },
-      { field: "winNumbers", headerName: "Winning Numbers", width: 200 },
+      { field: "id", headerName: "ID", width: 20 },
+      { field: "draw", headerName: "Draw Time", width: 150 },
+      { field: "setPoints", headerName: "Set Points", width: 150 },
+      { field: "wonPoints", headerName: "Won Points", width: 150 },
+      { field: "betCount", headerName: "Total Bet Count", width: 150 },
+      { field: "winCount", headerName: "Bet Won Count", width: 150 },
+      { field: "winNumbers", headerName: "Winning Numbers", width: 150 },
     ];
     return (
       <div>
         <center>
-        <Card style={{ width: "75%", marginTop: 25 }}>
+        <Card style={{  width: "90%", marginTop: '60px' }}>
             <CardHeader
               // subheader="Manage "
               title="Draw Details"

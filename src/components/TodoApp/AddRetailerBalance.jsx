@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AuthenticationService from "./AuthenticationService";
-import { addRetailerBalance } from './Constant'
-import RetailerDropDown from './RetailerDropDown.jsx'
+import { addRetailerBalance } from "./Constant";
+import RetailerDropDown from "./RetailerDropDown.jsx";
 import {
   Box,
   Button,
@@ -17,59 +17,70 @@ import {
 } from "@mui/material";
 
 class AddRetailerBalance extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      balance: "",
+      retailerid: "",
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.setProperty = this.setProperty.bind(this);
+    this.handleCallback = this.handleCallback.bind(this);
+  }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            balance: '',
-            retailerid : ''
-        }
-        this.handleClose = this.handleClose.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.setProperty = this.setProperty.bind(this);
-        this.handleCallback = this.handleCallback.bind(this);
-    }
+  handleClose() {
+    this.setState({
+      balance: "",
+    });
+  }
 
-    handleClose() {
-        this.setState({
-            balance: ''
-        })
-    }
+  handleSubmit() {
+    const balanceData = {
+      balance: this.state.balance,
+    };
+    console.log(balanceData);
+    console.log(this.state.retailerid);
+    AuthenticationService.executeRetailerBalance(
+      addRetailerBalance,
+      this.state.retailerid,
+      balanceData
+    )
+      .then((response) => {
+        this.setState({ balanceUpdated: true });
+        console.log("balance updated successfully");
+      })
+      .catch((error) => {
+        this.setState({ balanceNotUpdated: true });
+        console.log("balance update failure" + error);
+      });
+  }
 
-    handleSubmit() {
-        const balanceData = {
-            "balance": this.state.balance
-        }
-        console.log(balanceData)
-        console.log(this.state.retailerid)
-        AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
-            .then((response) => {  this.setState({balanceUpdated: true}); console.log('balance updated successfully') })
-            .catch((error) => { this.setState({balanceNotUpdated: true}); console.log('balance update failure' + error) })
-    }
+  setProperty(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
 
+  handleCallback = (childData) => {
+    console.log("data came form chile domponant:" + childData);
+    this.setState({ retailerid: childData });
+  };
 
-    setProperty(event) {
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
-    handleCallback = (childData) =>{
-        console.log('data came form chile domponant:'+childData)
-        this.setState({retailerid: childData})
-    }
-
-
-    render() {
-        return (
-            <>
-            <center>
-            <Card style={{ width: "75%", marginTop: 25 }}>
+  render() {
+    return (
+      <>
+        <center>
+          <Card style={{ width: "90%", marginTop: "60px" }}>
             <CardHeader
               // subheader="Manage "
               title="Add Retailer Balance"
             />
             <Divider />
-            {this.state.balanceUpdated && (<div className="alert alert-success">Balance Updated</div>)}
-            {this.state.balanceNotUpdated && (<div className="alert alert-danger">Balance Not Updated</div>)}
+            {this.state.balanceUpdated && (
+              <div className="alert alert-success">Balance Updated</div>
+            )}
+            {this.state.balanceNotUpdated && (
+              <div className="alert alert-danger">Balance Not Updated</div>
+            )}
             <CardContent className="table-responsive">
               <Grid container spacing={6} wrap="wrap">
                 <Grid
@@ -82,25 +93,42 @@ class AddRetailerBalance extends Component {
                   // }}
                   xs={20}
                 >
-            <RetailerDropDown parentCallback = {this.handleCallback}/>
-            <TextField style={{width:'35%'}} id="outlined-basic" label="New Balance" variant="outlined" name="balance" required value={this.state.balance}
-             onChange={this.setProperty} />
-            <div>
-                <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit} style={{margin:8}}>
-                    Add Balance
-                </Button>
-                <Button variant="contained" onClick={this.handleClose} style={{margin:8}}>
-                    Reset
-                </Button>
-
-            </div>
-            </Grid>
-            </Grid>
+                  <RetailerDropDown parentCallback={this.handleCallback} />
+                  <TextField
+                    style={{ width: "100%" }}
+                    id="outlined-basic"
+                    label="New Balance"
+                    variant="outlined"
+                    name="balance"
+                    required
+                    value={this.state.balance}
+                    onChange={this.setProperty}
+                  />
+                  <div>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      onClick={this.handleSubmit}
+                      style={{ margin: 8 }}
+                    >
+                      Add Balance
+                    </Button>
+                    <Button
+                      variant="contained"
+                      onClick={this.handleClose}
+                      style={{ margin: 8 }}
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
             </CardContent>
-            </Card>
-            </center>
-            </>
-        )
-    }
+          </Card>
+        </center>
+      </>
+    );
+  }
 }
-export default AddRetailerBalance
+export default AddRetailerBalance;
