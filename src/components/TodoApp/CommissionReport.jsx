@@ -139,7 +139,7 @@ class CommissionReport extends React.Component {
                   }}
                 >
                   <DataGrid
-                    getRowId={(row) => row.retailI}
+                    getRowId={(row) => row.retailId}
                     rows={this.state.data}
                     columns={columns}
                     pageSize={100}
