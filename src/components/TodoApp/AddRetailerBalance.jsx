@@ -25,31 +25,54 @@ class AddRetailerBalance extends Component {
             retailerid : ''
         }
         this.handleClose = this.handleClose.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleAddButtonSubmit = this.handleAddButtonSubmit.bind(this);
+        this.handleRemoveButtonSubmit = this.handleRemoveButtonSubmit.bind(this);
         this.setProperty = this.setProperty.bind(this);
         this.handleCallback = this.handleCallback.bind(this);
+        this.resetStatus = this.resetStatus.bind(this);
     }
 
     handleClose() {
         this.setState({
             balance: ''
         })
+        this.resetStatus();
     }
 
-    handleSubmit() {
+    handleAddButtonSubmit() {
+        this.resetStatus();
         const balanceData = {
             "balance": this.state.balance
         }
         console.log(balanceData)
         console.log(this.state.retailerid)
         AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
-            .then((response) => {  this.setState({balanceUpdated: true}); console.log('balance updated successfully') })
+            .then((response) => { this.setState({balanceUpdated: true}); console.log('balance updated successfully') })
             .catch((error) => { this.setState({balanceNotUpdated: true}); console.log('balance update failure' + error) })
     }
 
+    handleRemoveButtonSubmit() {
+        this.resetStatus();
+        const balanceData = {
+            "balance": -this.state.balance
+        }
+        console.log(balanceData)
+        console.log(this.state.retailerid)
+        AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
+            .then((response) => { this.setState({balanceUpdated: true});  console.log('balance updated successfully') })
+            .catch((error) => { this.setState({balanceNotUpdated: true});  console.log('balance update failure' + error) })
+    }
 
-    setProperty(event) {
-        this.setState({ [event.target.name]: event.target.value })
+    resetStatus(){
+        this.setState({balanceUpdated: false});
+        this.setState({balanceNotUpdated: false});
+    }
+
+    setProperty(e) {
+        const re = /^[0-9\b]+$/;
+        if (e.target.value === '' || re.test(e.target.value)) {
+            this.setState({[e.target.name]: e.target.value})
+         }
     }
 
     handleCallback = (childData) =>{
@@ -86,8 +109,11 @@ class AddRetailerBalance extends Component {
             <TextField style={{width:'35%'}} id="outlined-basic" label="New Balance" variant="outlined" name="balance" required value={this.state.balance}
              onChange={this.setProperty} />
             <div>
-                <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit} style={{margin:8}}>
+                <Button type="submit" variant="contained" color="primary" onClick={this.handleAddButtonSubmit} style={{margin:8}}>
                     Add Balance
+                </Button>
+                <Button type="submit" variant="contained" color="success" onClick={this.handleRemoveButtonSubmit} style={{margin:8}}>
+                    Remove Balance
                 </Button>
                 <Button variant="contained" onClick={this.handleClose} style={{margin:8}}>
                     Reset

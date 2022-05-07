@@ -54,6 +54,7 @@ class RetailerDropDown extends Component {
                     Retails Ids
                 </InputLabel>
                 <NativeSelect
+                    onClick={this.handleChange}
                     onChange={this.handleChange}
                     defaultValue={0}
                     inputProps={{

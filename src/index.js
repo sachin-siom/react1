@@ -8,9 +8,9 @@ import AuthenticationService from './components/TodoApp/AuthenticationService'
 
 axios.interceptors.request.use(
   (req) => {
-    console.log('global interceptor')
       if(AuthenticationService.isUserLoggedIn()){
         req.headers.Authorization = AuthenticationService.getAuthItem()
+        console.log('global interceptor'+ req.headers.Authorization);
       }
      return req;
   },
