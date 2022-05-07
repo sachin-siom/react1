@@ -13,8 +13,6 @@ import RetailerDetailsComponentWithParams from './RetailerDetailsComponentWithPa
 import AddRetailer from './AddRetailer.jsx'
 import ViewRetailers from './ViewRetailers.jsx'
 import AddRetailerBalance from './AddRetailerBalance.jsx'
-import ManagePoints from './ManagePoints.jsx'
-import RetailerDropDown from './RetailerDropDown.jsx'
 import Users from '../components/users.jsx'
 import Commissionreport from "../components/commissionreport.jsx";
 import Liveplayer from "../components/liveplayer.jsx";
@@ -27,6 +25,7 @@ import Settings from "../components/settings.jsx";
 import Drawdetails from "../components/reports/drawdetails.jsx";
 import RetailerTicket from "../components/reports/retailerTickets.jsx";
 import CommissionReport from '../TodoApp/CommissionReport.jsx'
+import ManageAdmin from "./ManageAdmin.jsx";
 
 
 class CoreComponant extends Component{
@@ -46,7 +45,7 @@ class CoreComponant extends Component{
                         <Route path="/addRetailer" element={<AuthenticatedRoute><AddRetailer /></AuthenticatedRoute>} />
                         <Route path="/viewRetailers" element={<AuthenticatedRoute><ViewRetailers /></AuthenticatedRoute>} />
                         <Route path="/addRetailerBalance" element={<AuthenticatedRoute><AddRetailerBalance /></AuthenticatedRoute>} />
-                        <Route path="/managePoints" element={<AuthenticatedRoute><ManagePoints /></AuthenticatedRoute>} />
+                        <Route path="/ManageAdmin" element={<AuthenticatedRoute><ManageAdmin /></AuthenticatedRoute>} />
 
                         <Route path="/drawDetails" element={<AuthenticatedRoute><ListTodosComponentWithParams /></AuthenticatedRoute>} />
                         <Route path="/retailerTickets" element={<AuthenticatedRoute><RetailerDetailsComponentWithParams /></AuthenticatedRoute>} />
@@ -65,7 +64,6 @@ class CoreComponant extends Component{
                         <Route path="/settings" element={<AuthenticatedRoute><Settings/></AuthenticatedRoute>} />
                         <Route path="/reports/drawdetails" element={<AuthenticatedRoute><Drawdetails/></AuthenticatedRoute>} />
                         <Route path="/reports/retailerticket" element={<AuthenticatedRoute><RetailerTicket/></AuthenticatedRoute>} />
-                        
 
 
                         <Route path="*" element={<ErrorComponant/>}/>

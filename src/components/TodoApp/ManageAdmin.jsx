@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AuthenticationService from "./AuthenticationService";
 import { WithContext as ReactTags } from 'react-tag-input';
-import { includeNumbers, onlyRetailerId } from './Constant';
+import { includeNumbers, onlyRetailerId,updateProfitPercentage,changePasswordUrl } from './Constant';
 import {
     Button,
     Box,
@@ -23,14 +23,20 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-class ManagePoints extends Component {
+class ManageAdmin extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             tags: [],
-            include: false,
+            userName: '',
+            password:'',
+            passAlert: false,
+            proftAlert: false,
+            errorAlert: false,
             reset: false,
+            include: false,
+            profitPercentage:'',
             suggestions: [
                 { id: '1', text: '1' },
                 { id: '2', text: '2' },
@@ -46,6 +52,9 @@ class ManagePoints extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
+        this.updateAdmin = this.updateAdmin.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.resetAlert = this.resetAlert.bind(this);
     }
 
     componentDidMount() {
@@ -62,6 +71,8 @@ class ManagePoints extends Component {
 
                 console.log(typeof orderInputObjects)
                 this.setState({ tags: orderInputObjects })
+                this.setState({ userName: response.data.username })
+                this.setState({ profitPercentage: response.data.profitPercentage })
             })
             .catch((error) => { console.log('problem in retiving retailers id'); this.setState({ dataFetchError: true }) });
     }
@@ -98,12 +109,47 @@ class ManagePoints extends Component {
     }
 
     handleSubmit() {
+        this.resetAlert();
         const tags = [...this.state.tags];
         let onlyNum = tags.map((x) => x.id)
         console.log(onlyNum)
         AuthenticationService.executeIncludeNumbers(includeNumbers, onlyNum)
             .then((response) => { this.setState({include: true}); console.log('data updated successsfully') })
-            .catch((error) => { })
+            .catch((error) => {this.setState({errorAlert : true}); })
+    }
+
+    updateAdmin() {
+        this.resetAlert();
+        if(this.state.profitPercentage){
+            const proftPer = {
+                "profitPercentage": this.state.profitPercentage
+            }
+            AuthenticationService.updateProfirPercentage(updateProfitPercentage+'/1', proftPer)
+            .then((response) => { this.setState({proftAlert : true}); console.log('data updated successsfully') })
+            .catch((error) => { this.setState({errorAlert : true});})
+        }
+        if(this.state.password){
+            const passwordData = {
+                "password": this.state.password
+            }
+            AuthenticationService.changePassword(changePasswordUrl+'/1', passwordData)
+            .then((response) => {this.setState({passAlert : true}); console.log('password updated successsfully') })
+            .catch((error) => { this.setState({errorAlert : true});})
+        }
+    }
+
+    resetAlert(){
+        this.setState({proftAlert : false});
+        this.setState({passAlert : false}); 
+        this.setState({errorAlert : false});
+        this.setState({include : false});
+        this.setState({reset : false});
+    }
+
+    handleClose() {
+        this.setState({profitPercentage : ''});
+        this.setState({password : ''});
+        this.resetAlert();
     }
 
     render() {
@@ -119,6 +165,12 @@ class ManagePoints extends Component {
                         <Divider />
                         {this.state.include && (<div className="alert alert-success">Number Included Successfully</div>)}
                         {this.state.reset && (<div className="alert alert-danger">Number Removed Successfully</div>)}
+
+                        {this.state.passAlert && (<div className="alert alert-success">Password Updated Successfully</div>)}
+                        {this.state.proftAlert && (<div className="alert alert-success">Profit % updated Successfully</div>)}
+
+                        {this.state.errorAlert && (<div className="alert alert-danger">Error updating details</div>)}
+                        
                         <CardContent className="table-responsive">
                             <Grid container spacing={6} wrap="wrap">
                                 <Grid item
@@ -146,6 +198,52 @@ class ManagePoints extends Component {
                                             Reset
                                         </Button>
                                     </div>
+                                    <div>
+                    <TextField
+                      id="outlined-basic"
+                      label="User Name"
+                      variant="outlined"
+                      name="userName"
+                      readOnly={true}
+                      disabled={true}
+                      value={this.state.userName}
+                      onChange={this.setProperty}
+                      style={{ margin: 8, width: '25%' }}
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="Password"
+                      variant="outlined"
+                      type="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.setProperty}
+                      style={{ margin: 8, width: '25%' }}
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="Profit %"
+                      variant="outlined"
+                      name="profitPercentage"
+                      value={this.state.profitPercentage}
+                      onChange={this.setProperty}
+                      style={{ margin: 8, width: '25%' }}
+                    />
+                    <div>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        onClick={this.updateAdmin}
+                        style={{ margin: 8 }}
+                      >
+                        Update Admin
+                      </Button>
+                      <Button variant="contained" onClick={this.handleClose}>
+                        Reset
+                      </Button>
+                    </div>
+                  </div>
                                 </Grid>
                             </Grid>
                         </CardContent>
@@ -156,4 +254,4 @@ class ManagePoints extends Component {
     }
 }
 
-export default ManagePoints
+export default ManageAdmin

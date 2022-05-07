@@ -36,6 +36,14 @@ class AuthenticationService {
         return axios.post(`${url}`, data)
     }
 
+    changePassword(url, data){
+        return axios.post(`${url}`, data)
+    }
+
+    updateProfirPercentage(url, data){
+        return axios.post(`${url}`, data)
+    }
+
     createBasicAuthToken(username, password){
         return 'Basic ' + window.btoa(username + ':' + password)
     }
