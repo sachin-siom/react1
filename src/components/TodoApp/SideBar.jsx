@@ -16,6 +16,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LoopIcon from "@mui/icons-material/Loop";
 import CookieIcon from "@mui/icons-material/Cookie";
 import AlbumIcon from "@mui/icons-material/Album";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 // import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Link } from "react-router-dom";
 
@@ -155,7 +156,7 @@ const SideBar = () => {
                 onClick={() => setToggleMenu(false)}
                 variant="outlined"
               >
-                <PersonIcon /> Add Users
+                <PersonAddIcon /> Add Users
               </Button>
             </Link>
             <Link className="nav-link" to="/viewRetailers">
@@ -174,7 +175,7 @@ const SideBar = () => {
                 onClick={() => setToggleMenu(false)}
                 variant="outlined"
               >
-                <PersonIcon /> Add Retailer Balance
+                <PersonAddIcon /> Add Retailer Balance
               </Button>
             </Link>
 
