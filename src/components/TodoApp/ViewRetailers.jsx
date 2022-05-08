@@ -61,10 +61,10 @@ class ViewRetailers extends Component {
 
     render() {
         const columns = [
-            { field: 'retailId', headerName: 'ID', width: 200 },
-            { field: 'username', headerName: 'User Name', width: 200 },
-            { field: 'balance', headerName: 'Balance' , width: 200},
-            { field: 'status', headerName: 'status', width: 200},
+            { field: 'retailId', headerName: 'ID', width: 20 },
+            { field: 'username', headerName: 'User Name', width: 150 },
+            { field: 'balance', headerName: 'Balance' , width: 100},
+            { field: 'status', headerName: 'status', width: 100},
             {
                 field: 'Change Status',
                 headerName: 'Change Status',
@@ -83,13 +83,12 @@ class ViewRetailers extends Component {
                       this.setRetailerStatus(thisRow);
                     //return alert(JSON.stringify(thisRow, null, 4));
                   };
-                  alert(params)
                   return <Button 
                     variant="contained"
                     onClick={onClick}
                     style={{fontSize: '13px', padding: 5, margin: '0px'}}
                   >Change Status</Button>;
-                }, width: 250
+                }, width: 150
               },
               {
                 field: 'Reset MAC',
@@ -120,7 +119,7 @@ class ViewRetailers extends Component {
         return (
                 <div>
                   <center>
-                  <Card style={{width:'75%',marginTop:25}} >
+                  <Card style={{width: "90%", marginTop: '60px'}} >
         <CardHeader
           // subheader="Manage "
           title="View Retailers"

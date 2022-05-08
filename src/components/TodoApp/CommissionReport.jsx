@@ -83,7 +83,7 @@ class CommissionReport extends React.Component {
     return (
       <div>
           <center>
-        <Card style={{ width: "75%", marginTop: 25 ,marginBottom:35}}>
+        <Card style={{ width: "90%", marginTop: '60px' ,marginBottom:35}}>
           <CardHeader
             // subheader="Manage "
             title="Commission Report"
@@ -111,6 +111,8 @@ class CommissionReport extends React.Component {
                       renderInput={(params) => <TextField {...params} />}
                     />
                   </LocalizationProvider>
+                  <br/>
+                  <br/>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DesktopDatePicker
                       label="To Date"
@@ -120,7 +122,7 @@ class CommissionReport extends React.Component {
                       renderInput={(params) => <TextField {...params} />}
                     />
                   </LocalizationProvider>
-                </div>
+                </div><br/>
                 <div className="col-sm-10">
                   <Button
                     style={{ margin: 8 }}

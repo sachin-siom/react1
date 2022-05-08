@@ -158,7 +158,7 @@ class ManageAdmin extends Component {
             <>
                 <center>
 
-                    <Card style={{ width: "75%", marginTop: 25 }}>
+                    <Card style={{ width: "90%", marginTop: '60px' }}>
                         <CardHeader
                             // subheader="Manage "
                             title="Manage Points" />

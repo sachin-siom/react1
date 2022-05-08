@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AuthenticationService from "./AuthenticationService";
-import { addRetailerBalance } from './Constant'
-import RetailerDropDown from './RetailerDropDown.jsx'
+import { addRetailerBalance } from "./Constant";
+import RetailerDropDown from "./RetailerDropDown.jsx";
 import {
   Box,
   Button,
@@ -85,14 +85,18 @@ class AddRetailerBalance extends Component {
         return (
             <>
             <center>
-            <Card style={{ width: "75%", marginTop: 25 }}>
+            <Card style={{ width: "90%", marginTop: 60 }}>
             <CardHeader
               // subheader="Manage "
               title="Add Retailer Balance"
             />
             <Divider />
-            {this.state.balanceUpdated && (<div className="alert alert-success">Balance Updated</div>)}
-            {this.state.balanceNotUpdated && (<div className="alert alert-danger">Balance Not Updated</div>)}
+            {this.state.balanceUpdated && (
+              <div className="alert alert-success">Balance Updated</div>
+            )}
+            {this.state.balanceNotUpdated && (
+              <div className="alert alert-danger">Balance Not Updated</div>
+            )}
             <CardContent className="table-responsive">
               <Grid container spacing={6} wrap="wrap">
                 <Grid
@@ -123,10 +127,10 @@ class AddRetailerBalance extends Component {
             </Grid>
             </Grid>
             </CardContent>
-            </Card>
-            </center>
-            </>
-        )
-    }
+          </Card>
+        </center>
+      </>
+    );
+  }
 }
-export default AddRetailerBalance
+export default AddRetailerBalance;
