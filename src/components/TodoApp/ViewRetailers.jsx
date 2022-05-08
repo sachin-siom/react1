@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AuthenticationService from "./AuthenticationService.js";
 import {getAllRetailer} from './Constant'
 import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
-import {enableRetailer, disableRetailer} from './Constant'
+import {enableRetailer, disableRetailer, registerMac} from './Constant'
 
 import {
   Box,
@@ -26,7 +26,8 @@ class ViewRetailers extends Component {
           data: [],
           dataFetchError: false
         };
-        this.setRetailerStatus = this.setRetailerStatus.bind(this)
+        this.setRetailerStatus = this.setRetailerStatus.bind(this);
+        this.resetMAC = this.resetMAC.bind(this);
     }
 
     setRetailerStatus(thisRow){
@@ -39,11 +40,22 @@ class ViewRetailers extends Component {
             url = `${disableRetailer}`
         }
         let retailId = thisRow.retailId
-        this.setState({data:[]})
+        //this.setState({data:[]})
         AuthenticationService.executeRetailerStatusUpdate(url, retailId)
-        .then(response =>  {})
+        .then(response =>  {console.log('Retailer status is changed')})
         .catch(error => {console.log('There is issue while loading reatiler data')})
     }
+
+    resetMAC(thisRow){
+      let retailId = thisRow.retailId
+      console.log('retails is while resetting mac'+retailId)
+      const macAddress = {
+        "macAddress": ''
+      }
+      AuthenticationService.executeResetMAC(`${registerMac}/${retailId}`,macAddress)
+      .then(response =>  {})
+      .catch(error => {console.log('There is issue while loading reatiler data')})
+  }
 
     componentDidMount() {
         AuthenticationService.executeRetailers(`${getAllRetailer}`)
@@ -80,7 +92,32 @@ class ViewRetailers extends Component {
                     variant="contained"
                     onClick={onClick}
                     style={{fontSize: '13px', padding: 5, margin: '0px'}}
-                  >Modify Status</Button>;
+                  >Change Status</Button>;
+                }, width: 250
+              },
+              {
+                field: 'Reset MAC',
+                headerName: 'Reset MAC',
+                sortable: false,
+                renderCell: (params) => {
+                  const onClick = (e) => {
+                    e.stopPropagation(); // don't select this row after clicking
+                    const api: GridApi = params.api;
+                    const thisRow: Record<string, GridCellValue> = {};
+                    
+                    api
+                      .getAllColumns()
+                      .filter((c) => c.field !== '__check__' && !!c)
+                      .forEach(
+                        (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+                      );
+                      this.resetMAC(thisRow);
+                    //return alert(JSON.stringify(thisRow, null, 4));
+                  };
+                  return <Button 
+                    variant="contained"
+                    onClick={onClick}
+                    style={{fontSize: '13px', padding: 5, margin: '0px'}}> Reset MAC</Button>;
                 }, width: 250
               }
         ]
