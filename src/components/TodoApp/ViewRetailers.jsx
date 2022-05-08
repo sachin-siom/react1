@@ -10,12 +10,8 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Radio,
   Divider,
-  FormControlLabel,
-  Grid,
-  Typography,
-  TextField,
+  Grid
 } from "@mui/material";
 
 class ViewRetailers extends Component {
@@ -78,7 +74,6 @@ class ViewRetailers extends Component {
                     e.stopPropagation(); // don't select this row after clicking
                     const api: GridApi = params.api;
                     const thisRow: Record<string, GridCellValue> = {};
-                    
                     api
                       .getAllColumns()
                       .filter((c) => c.field !== '__check__' && !!c)
@@ -88,6 +83,7 @@ class ViewRetailers extends Component {
                       this.setRetailerStatus(thisRow);
                     //return alert(JSON.stringify(thisRow, null, 4));
                   };
+                  alert(params)
                   return <Button 
                     variant="contained"
                     onClick={onClick}
