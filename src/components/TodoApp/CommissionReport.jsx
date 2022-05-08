@@ -122,7 +122,7 @@ class CommissionReport extends React.Component {
                       renderInput={(params) => <TextField {...params} />}
                     />
                   </LocalizationProvider>
-                </div><br/>
+                </div>
                 <div className="col-sm-10">
                   <Button
                     style={{ margin: 8 }}
