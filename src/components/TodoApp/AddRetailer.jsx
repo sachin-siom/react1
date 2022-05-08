@@ -57,7 +57,7 @@ class AddRetailer extends Component {
     return (
       <>
         <center>
-          <Card style={{ width: "75%", marginTop: 25 }}>
+          <Card style={{ width: "90%", marginTop: '60px' }}>
             <CardHeader
               // subheader="Manage "
               title="Add Retailer"
@@ -76,7 +76,7 @@ class AddRetailer extends Component {
                   // }}
                   xs={20}
                 >
-                  <div>
+                  <div style={{display:'inline-block'}}>
                     <TextField
                       id="outlined-basic"
                       label="User Name"
@@ -85,8 +85,8 @@ class AddRetailer extends Component {
                       required
                       value={this.state.userName}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width: '25%' }}
-                    />
+                      style={{ margin: 8, width: '100%' }}
+                    /><br/>
                     <TextField
                       id="outlined-basic"
                       label="Password"
@@ -96,8 +96,8 @@ class AddRetailer extends Component {
                       required
                       value={this.state.password}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width: '25%' }}
-                    />
+                      style={{ margin: 8, width: '100%' }}
+                    /><br/>
                     <TextField
                       id="outlined-basic"
                       label="Commission %"
@@ -106,7 +106,7 @@ class AddRetailer extends Component {
                       required
                       value={this.state.profitPercentage}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width: '25%' }}
+                      style={{ margin: 8, width: '100%' }}
                     />
                     <div>
                       <Button

@@ -83,22 +83,21 @@ class RetailerDetails extends React.Component {
 
   render() {
     const columns = [
-      { field: "id", headerName: "ID", width: 200, alignSelf: "center" },
-      { field: "draw", headerName: "Draw Time", width: 200 },
-      { field: "retailerId", headerName: "Retailer Id", width: 200 },
-      { field: "ticketid", headerName: "Ticket Id", width: 200 },
-      { field: "setPoints", headerName: "Set Points", width: 200 },
-      { field: "wonPoints", headerName: "Won Points", width: 200 },
-      { field: "claimed", headerName: "Is Claimed", width: 200 },
-      { field: "claimedTime", headerName: "Claimed Time", width: 200 },
+      { field: "id", headerName: "ID", width: 150, alignSelf: "center" },
+      { field: "draw", headerName: "Draw Time", width: 150 },
+      { field: "retailerId", headerName: "Retailer Id", width: 150 },
+      { field: "ticketid", headerName: "Ticket Id", width: 150 },
+      { field: "setPoints", headerName: "Set Points", width: 150 },
+      { field: "wonPoints", headerName: "Won Points", width: 150 },
+      { field: "claimed", headerName: "Is Claimed", width: 150 },
+      { field: "claimedTime", headerName: "Claimed Time", width: 150 },
     ];
 
     return (
       <div>
           <center>
-        <Card style={{ width: "75%", marginTop: 25 ,marginBottom:35}}>
+        <Card style={{ width: "90%", marginTop: '60px' ,marginBottom:35}}>
           <CardHeader
-            // subheader="Manage "
             title="Retailer Tickets"
           />
           <Divider />
@@ -108,10 +107,6 @@ class RetailerDetails extends React.Component {
                 item
                 md={16}
                 sm={18}
-                // sx={{
-                //   display: "flex",
-                //   flexDirection: "column",
-                // }}
                 xs={20}
               >
                 <div className="col-sm-10">{this.state.error}</div>

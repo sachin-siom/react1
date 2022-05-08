@@ -17,3 +17,4 @@ export const registerMac = 'http://localhost:8081/admin/registerMac'
 export const updateProfitPercentage = 'http://localhost:8081/admin/manageRetailer/updateProfitPercentage'
 export const includeNumbers = 'http://localhost:8081/admin/includeNumber/1'
 export const API_PATH_BASE = 'http://localhost:8081/'
+
