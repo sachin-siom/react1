@@ -17,7 +17,6 @@ class RetailerDropDown extends Component {
             ],
             dataFetchError : false
         };
-        this.handleDropDownChange = this.handleDropDownChange.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -25,12 +24,6 @@ class RetailerDropDown extends Component {
         AuthenticationService.executeRetailers(`${onlyRetailerIds}`)
         .then((response) => { this.setState({ retailIds: response.data }); })
         .catch((error) => {console.log('problem in retiving retailers id'); this.setState({dataFetchError : true})});
-    }
-
-    handleDropDownChange(event) {
-        this.setState({ dropDownValue: event.target.value })
-        this.props.parentCallback(event.target.value);
-        event.preventDefault();
     }
 
     handleChange(event) {
@@ -44,7 +37,7 @@ class RetailerDropDown extends Component {
         let retailIdsLists = retailIds.length > 0
             && retailIds.map((item, i) => {
                 return (
-                    <option key = {i} value={item.retailId}>{item.retailId}</option>
+                    <option key = {i} value={item.id}>{item.id}</option>
                 )
             }, this);
         return (
@@ -54,8 +47,10 @@ class RetailerDropDown extends Component {
                     Retails Ids
                 </InputLabel>
                 <NativeSelect
+                    value={this.state.dropDownValue}
+                    onClick={this.handleChange}
                     onChange={this.handleChange}
-                    defaultValue={0}
+                    onLoad={this.handleChange}
                     inputProps={{
                         name: 'retailids',
                         id: 'uncontrolled-native',

@@ -179,13 +179,13 @@ const SideBar = () => {
               </Button>
             </Link>
 
-            <Link className="nav-link" to="/managePoints">
+            <Link className="nav-link" to="/manageAdmin">
               <Button
                 style={{ marginTop: 10, width: "100%" }}
                 onClick={() => setToggleMenu(false)}
                 variant="outlined"
               >
-                <StarRateIcon /> Manage Points
+                <StarRateIcon /> Manage Admin
               </Button>
             </Link>
 

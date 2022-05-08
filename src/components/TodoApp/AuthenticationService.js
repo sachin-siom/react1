@@ -28,11 +28,23 @@ class AuthenticationService {
         return axios.put(`${url}/${retailId}`)
     }
 
+    executeResetMAC(url ,data){
+        return axios.post(`${url}`, data)
+    }
+
     executeRetailers(url){
         return axios.get(`${url}`)
     }
 
     addRetailer(url, data){
+        return axios.post(`${url}`, data)
+    }
+
+    changePassword(url, data){
+        return axios.post(`${url}`, data)
+    }
+
+    updateProfirPercentage(url, data){
         return axios.post(`${url}`, data)
     }
 

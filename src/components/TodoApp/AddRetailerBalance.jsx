@@ -17,59 +17,80 @@ import {
 } from "@mui/material";
 
 class AddRetailerBalance extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      balance: "",
-      retailerid: "",
-    };
-    this.handleClose = this.handleClose.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.setProperty = this.setProperty.bind(this);
-    this.handleCallback = this.handleCallback.bind(this);
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            balance: '',
+            retailerid : ''
+        }
+        this.handleClose = this.handleClose.bind(this);
+        this.handleAddButtonSubmit = this.handleAddButtonSubmit.bind(this);
+        this.handleRemoveButtonSubmit = this.handleRemoveButtonSubmit.bind(this);
+        this.setProperty = this.setProperty.bind(this);
+        this.handleCallback = this.handleCallback.bind(this);
+        this.resetStatus = this.resetStatus.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+  handleChange() {
+      this.props.parentCallback();
   }
 
-  handleClose() {
-    this.setState({
-      balance: "",
-    });
-  }
+    handleClose() {
+        this.setState({
+            balance: ''
+        })
+        this.resetStatus();
+    }
 
-  handleSubmit() {
-    const balanceData = {
-      balance: this.state.balance,
-    };
-    console.log(balanceData);
-    console.log(this.state.retailerid);
-    AuthenticationService.executeRetailerBalance(
-      addRetailerBalance,
-      this.state.retailerid,
-      balanceData
-    )
-      .then((response) => {
-        this.setState({ balanceUpdated: true });
-        console.log("balance updated successfully");
-      })
-      .catch((error) => {
-        this.setState({ balanceNotUpdated: true });
-        console.log("balance update failure" + error);
-      });
-  }
+    handleAddButtonSubmit() {
+        this.resetStatus();
+        const balanceData = {
+            "balance": this.state.balance
+        }
+        console.log(balanceData)
+        console.log(this.state.retailerid)
+        AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
+            .then((response) => { this.setState({balanceUpdated: true}); this.handleChange(); console.log('balance updated successfully') })
+            .catch((error) => { this.setState({balanceNotUpdated: true}); console.log('balance update failure' + error) })
+    }
 
-  setProperty(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+    handleRemoveButtonSubmit() {
+        this.resetStatus();
+        const balanceData = {
+            "balance": -this.state.balance
+        }
+        console.log(balanceData)
+        console.log(this.state.retailerid)
+        AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
+            .then((response) => { this.setState({balanceUpdated: true}); this.handleChange(); console.log('balance updated successfully') })
+            .catch((error) => { this.setState({balanceNotUpdated: true});  console.log('balance update failure' + error) })
+    }
 
-  handleCallback = (childData) => {
-    console.log("data came form chile domponant:" + childData);
-    this.setState({ retailerid: childData });
-  };
+    resetStatus(){
+        this.setState({balanceUpdated: false});
+        this.setState({balanceNotUpdated: false});
+    }
 
-  render() {
-    return (
-      <>
-        <center>
-          <Card style={{ width: "90%", marginTop: "60px" }}>
+    setProperty(e) {
+        const re = /^[0-9\b]+$/;
+        if (e.target.value === '' || re.test(e.target.value)) {
+            this.setState({[e.target.name]: e.target.value})
+         }
+    }
+
+    handleCallback = (childData) =>{
+        console.log('data came form chile domponant:'+childData)
+        this.setState({retailerid: childData})
+    }
+
+
+    render() {
+        return (
+            <>
+            <center>
+            <Card style={{ width: "90%", marginTop: 60 }}>
             <CardHeader
               // subheader="Manage "
               title="Add Retailer Balance"
@@ -87,43 +108,25 @@ class AddRetailerBalance extends Component {
                   item
                   md={16}
                   sm={18}
-                  // sx={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  // }}
                   xs={20}
                 >
-                  <RetailerDropDown parentCallback={this.handleCallback} />
-                  <TextField
-                    style={{ width: "100%" }}
-                    id="outlined-basic"
-                    label="New Balance"
-                    variant="outlined"
-                    name="balance"
-                    required
-                    value={this.state.balance}
-                    onChange={this.setProperty}
-                  />
-                  <div>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleSubmit}
-                      style={{ margin: 8 }}
-                    >
-                      Add Balance
-                    </Button>
-                    <Button
-                      variant="contained"
-                      onClick={this.handleClose}
-                      style={{ margin: 8 }}
-                    >
-                      Reset
-                    </Button>
-                  </div>
-                </Grid>
-              </Grid>
+            <RetailerDropDown parentCallback = {this.handleCallback}/>
+            <TextField style={{width:'35%'}} id="outlined-basic" label="New Balance" variant="outlined" name="balance" required value={this.state.balance}
+             onChange={this.setProperty} />
+            <div>
+                <Button type="submit" variant="contained" color="primary" onClick={this.handleAddButtonSubmit} style={{margin:8}}>
+                    Add Balance
+                </Button>
+                <Button type="submit" variant="contained" color="success" onClick={this.handleRemoveButtonSubmit} style={{margin:8}}>
+                    Remove Balance
+                </Button>
+                <Button variant="contained" onClick={this.handleClose} style={{margin:8}}>
+                    Reset
+                </Button>
+
+            </div>
+            </Grid>
+            </Grid>
             </CardContent>
           </Card>
         </center>

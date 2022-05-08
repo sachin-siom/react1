@@ -107,7 +107,7 @@ class CommissionReport extends React.Component {
                       label="From Date"
                       inputFormat="yyyy-MM-dd"
                       value={this.state.fDate}
-                      onChange={this.handleChangeFDate}
+                      onChange={this.handleChangeFdate}
                       renderInput={(params) => <TextField {...params} />}
                     />
                   </LocalizationProvider>
@@ -122,7 +122,7 @@ class CommissionReport extends React.Component {
                       renderInput={(params) => <TextField {...params} />}
                     />
                   </LocalizationProvider>
-                </div><br/>
+                </div>
                 <div className="col-sm-10">
                   <Button
                     style={{ margin: 8 }}
