@@ -47,6 +47,12 @@ class DrawDetails extends React.Component {
       { field: "winCount", headerName: "Bet Won Count", width: 150 },
       { field: "winNumbers", headerName: "Winning Numbers", width: 150 },
     ];
+    
+    const propsRowStyle = (rowData, index)=>({
+      backgroundColor: rowData.wonPoints> 0 ? '#90EE90' : '#fff',
+    })
+    
+    
     return (
       <div>
         <center>
@@ -102,6 +108,7 @@ class DrawDetails extends React.Component {
           <DataGrid
             style={{ display: "flex" }}
             rows={this.state.data}
+            rowStyle={propsRowStyle}
             columns={columns}
             pageSize={100}
           />

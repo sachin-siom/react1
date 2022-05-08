@@ -112,7 +112,7 @@ class RetailerDetails extends React.Component {
       }
     };
     const propsRowStyle = (rowData, index)=>({
-      backgroundColor: rowData.wonPoints> 20 ? '#90EE90' : '#fff',
+      backgroundColor: rowData.wonPoints> 0 ? '#90EE90' : '#fff',
     })
     
     
