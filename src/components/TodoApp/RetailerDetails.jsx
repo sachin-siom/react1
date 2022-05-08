@@ -18,6 +18,13 @@ import {
   TextField,
 } from "@mui/material";
 
+
+
+
+
+
+
+
 class RetailerDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -69,20 +76,20 @@ class RetailerDetails extends React.Component {
         month: "numeric",
         day: "numeric",
       }) +
-        " " +
-        this.state.dropDownValue
-    );
-  }
-
-  populateDataInTable(response) {
-    console.log(response.data);
-    this.setState({
-      data: response.data,
-    });
-  }
-
-  render() {
-    const columns = [
+      " " +
+      this.state.dropDownValue
+      );
+    }
+    
+    populateDataInTable(response) {
+      console.log(response.data);
+      this.setState({
+        data: response.data,
+      });
+    }
+    
+    render() {
+      const columns = [
       { field: "id", headerName: "ID", width: 150, alignSelf: "center" },
       { field: "draw", headerName: "Draw Time", width: 150 },
       { field: "retailerId", headerName: "Retailer Id", width: 150 },
@@ -92,6 +99,23 @@ class RetailerDetails extends React.Component {
       { field: "claimed", headerName: "Is Claimed", width: 150 },
       { field: "claimedTime", headerName: "Claimed Time", width: 150 },
     ];
+    const datagridSx = {
+      borderRadius: 2,
+      "& .MuiDataGrid-main": { borderRadius: 2 },
+      "& .MuiDataGrid-virtualScrollerRenderZone": {
+        "& .MuiDataGrid-row": {
+          "&:nth-child(2n)": { backgroundColor: "rgba(235, 235, 235, .7)" }
+        }
+      },
+      "& .MuiDataGrid-columnHeaders": {
+        fontSize: 16
+      }
+    };
+    const propsRowStyle = (rowData, index)=>({
+      backgroundColor: rowData.wonPoints> 20 ? '#63bcfd' : '#fff',
+    })
+    
+    
 
     return (
       <div>
@@ -144,6 +168,8 @@ class RetailerDetails extends React.Component {
                   <DataGrid
                     rows={this.state.data}
                     columns={columns}
+                    rowStyle={propsRowStyle}
+                    sx={datagridSx}
                     pageSize={100}
                   />
                 </div>

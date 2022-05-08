@@ -22,7 +22,7 @@ const Settings = (props) => {
   return (
     <>
     <center>
-    <form style={{width:'75%',marginTop:25}} {...props}>
+    <form style={{width: "90%", marginTop: '60px'}} {...props}>
       <Card>
         <CardHeader
           // subheader="Manage "
@@ -128,7 +128,7 @@ const Settings = (props) => {
       </form>
       </center>
       <center>
-      <form style={{width:'75%',marginTop:25,marginBottom:25}} {...props}>
+      <form style={{width: "90%", marginTop: '60px',marginBottom:25}} {...props}>
       <Card>
         {/* <CardHeader
           subheader="Update password"
