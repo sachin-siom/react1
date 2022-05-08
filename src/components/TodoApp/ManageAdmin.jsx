@@ -161,14 +161,10 @@ class ManageAdmin extends Component {
                     <Card style={{ width: "90%", marginTop: '60px' }}>
                         <CardHeader
                             // subheader="Manage "
-                            title="Manage Points" />
+                            title="Insert Numbers" />
                         <Divider />
                         {this.state.include && (<div className="alert alert-success">Number Included Successfully</div>)}
                         {this.state.reset && (<div className="alert alert-danger">Number Removed Successfully</div>)}
-
-                        {this.state.passAlert && (<div className="alert alert-success">Password Updated Successfully</div>)}
-                        {this.state.proftAlert && (<div className="alert alert-success">Profit % updated Successfully</div>)}
-
                         {this.state.errorAlert && (<div className="alert alert-danger">Error updating details</div>)}
                         
                         <CardContent className="table-responsive">
@@ -192,13 +188,19 @@ class ManageAdmin extends Component {
                                     </div>
                                     <div>
                                         <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit} style={{ margin: 8 }} >
-                                            Include Number
+                                            Insert Number
                                         </Button>
                                         <Button variant="contained" onClick={this.handleReset}>
                                             Reset
                                         </Button>
                                     </div>
                                     <div>
+                        <CardHeader
+                            // subheader="Manage "
+                            title="Manage Admin" />
+                        <Divider />
+                        {this.state.passAlert && (<div className="alert alert-success">Password Updated Successfully</div>)}
+                        {this.state.proftAlert && (<div className="alert alert-success">Profit % updated Successfully</div>)}
                     <TextField
                       id="outlined-basic"
                       label="User Name"

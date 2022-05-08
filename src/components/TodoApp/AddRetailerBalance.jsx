@@ -30,7 +30,12 @@ class AddRetailerBalance extends Component {
         this.setProperty = this.setProperty.bind(this);
         this.handleCallback = this.handleCallback.bind(this);
         this.resetStatus = this.resetStatus.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
+
+  handleChange() {
+      this.props.parentCallback();
+  }
 
     handleClose() {
         this.setState({
@@ -47,7 +52,7 @@ class AddRetailerBalance extends Component {
         console.log(balanceData)
         console.log(this.state.retailerid)
         AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
-            .then((response) => { this.setState({balanceUpdated: true}); console.log('balance updated successfully') })
+            .then((response) => { this.setState({balanceUpdated: true}); this.handleChange(); console.log('balance updated successfully') })
             .catch((error) => { this.setState({balanceNotUpdated: true}); console.log('balance update failure' + error) })
     }
 
@@ -59,7 +64,7 @@ class AddRetailerBalance extends Component {
         console.log(balanceData)
         console.log(this.state.retailerid)
         AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
-            .then((response) => { this.setState({balanceUpdated: true});  console.log('balance updated successfully') })
+            .then((response) => { this.setState({balanceUpdated: true}); this.handleChange(); console.log('balance updated successfully') })
             .catch((error) => { this.setState({balanceNotUpdated: true});  console.log('balance update failure' + error) })
     }
 
@@ -103,10 +108,6 @@ class AddRetailerBalance extends Component {
                   item
                   md={16}
                   sm={18}
-                  // sx={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  // }}
                   xs={20}
                 >
             <RetailerDropDown parentCallback = {this.handleCallback}/>
