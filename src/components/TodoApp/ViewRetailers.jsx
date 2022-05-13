@@ -109,7 +109,7 @@ class ViewRetailers extends Component {
         sortable: false,
         renderCell: (params) => {
           const onClick = (e) => {
-            e.stopPropagation(); // don't select this row after clicking
+            e.stopPropagation();
             const api: GridApi = params.api;
             const thisRow: Record<string, GridCellValue> = {};
 
