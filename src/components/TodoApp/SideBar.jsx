@@ -16,6 +16,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LoopIcon from "@mui/icons-material/Loop";
 import CookieIcon from "@mui/icons-material/Cookie";
 import AlbumIcon from "@mui/icons-material/Album";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+// import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Link } from "react-router-dom";
 
 // logout
@@ -148,13 +150,42 @@ const SideBar = () => {
             <Button style={{ marginTop: 10 }} variant="text">
               Manage Points
             </Button>
-            <Link className="nav-link" to="/users">
+            <Link className="nav-link" to="/addRetailer">
               <Button
                 style={{ marginTop: 10, width: "100%" }}
                 onClick={() => setToggleMenu(false)}
                 variant="outlined"
               >
-                <PersonIcon /> Users
+                <PersonAddIcon /> Add Users
+              </Button>
+            </Link>
+            <Link className="nav-link" to="/viewRetailers">
+              <Button
+                style={{ marginTop: 10, width: "100%" }}
+                onClick={() => setToggleMenu(false)}
+                variant="outlined"
+              >
+                <PersonIcon /> View Users
+              </Button>
+            </Link>
+
+            <Link className="nav-link" to="/addRetailerBalance">
+              <Button
+                style={{ marginTop: 10, width: "100%" }}
+                onClick={() => setToggleMenu(false)}
+                variant="outlined"
+              >
+                <PersonAddIcon /> Add Retailer Balance
+              </Button>
+            </Link>
+
+            <Link className="nav-link" to="/manageAdmin">
+              <Button
+                style={{ marginTop: 10, width: "100%" }}
+                onClick={() => setToggleMenu(false)}
+                variant="outlined"
+              >
+                <StarRateIcon /> Manage Admin
               </Button>
             </Link>
 
@@ -194,7 +225,7 @@ const SideBar = () => {
               open={open}
               onClose={handleClose}
             >
-              <Link className="nav-link" to="/reports/drawdetails">
+              <Link className="nav-link" to="/drawDetails">
                 <MenuItem onClick={handleClose} disableRipple>
                   <Button
                     style={{ marginTop: 10, width: "100%" }}
@@ -206,7 +237,7 @@ const SideBar = () => {
                   </Button>
                 </MenuItem>
               </Link>
-              <Link className="nav-link" to="/reports/retailerticket">
+              <Link className="nav-link" to="/retailerTickets">
                 <MenuItem onClick={handleClose} disableRipple>
                   <Button
                     style={{ marginTop: 10, width: "100%" }}
