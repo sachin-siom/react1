@@ -21,32 +21,36 @@ class ViewRetailers extends Component {
     super(props)
     this.state = {
       data: [],
+      macNotReset: false,
+      macReset: false,
       dataFetchError: false
     };
-    this.setRetailerStatus = this.setRetailerStatus.bind(this);
+    this.activateDeactivateRetailer = this.activateDeactivateRetailer.bind(this);
     this.resetMAC = this.resetMAC.bind(this);
     this.handleCallback = this.handleCallback.bind(this);
     this.reload = this.reload.bind(this);
   }
 
-  setRetailerStatus(thisRow) {
+  activateDeactivateRetailer(thisRow) {
     let url = ''
     if (thisRow.id === 1)
       return
-    if (thisRow.status === false) {
+    if (thisRow.status === 'De-Activated') {
       url = `${enableRetailer}`
-    } else if (thisRow.status === true) {
+    } else if (thisRow.status === 'Activated') {
       url = `${disableRetailer}`
     }
     let retailId = thisRow.retailId
-    //this.setState({data:[]})
     AuthenticationService.executeRetailerStatusUpdate(url, retailId)
       .then(response => { console.log('Retailer status is changed') })
       .catch(error => { console.log('There is issue while loading reatiler data') })
+    this.reload();
   }
 
   handleCallback(childData) {
     this.reload();
+    this.setState({ macNotReset: false });
+    this.setState({ macReset: false });
   }
 
   resetMAC(thisRow) {
@@ -56,33 +60,32 @@ class ViewRetailers extends Component {
       "macAddress": ''
     }
     AuthenticationService.executeResetMAC(`${registerMac}/${retailId}`, macAddress)
-      .then(response => { })
-      .catch(error => { console.log('There is issue while loading reatiler data') })
+      .then(response => { this.setState({ macReset: true }); })
+      .catch(error => { this.setState({ macNotReset: true }); console.log('There is issue while loading reatiler data') })
   }
 
   componentDidMount() {
-   this.reload()
+    this.reload()
   }
 
-reload(){
-  AuthenticationService.executeRetailers(`${getAllRetailer}`)
-  .then(response => { console.log(response); this.setState({ data: response.data }); })
-  .catch(error => { console.log('there is problem in loading data'); this.setState({ dataFetchError: true }) });
-}
+  reload() {
+    AuthenticationService.executeRetailers(`${getAllRetailer}`)
+      .then(response => { this.setState({ data: response.data }); })
+      .catch(error => { console.log('there is problem in loading data'); this.setState({ dataFetchError: true }) });
+  }
 
   render() {
     const columns = [
       { field: 'retailId', headerName: 'ID', width: 20 },
       { field: 'username', headerName: 'User Name', width: 150 },
       { field: 'balance', headerName: 'Balance', width: 100 },
-      { field: 'status', headerName: 'status', width: 100 },
       {
-        field: 'Change Status',
+        field: 'status',
         headerName: 'Change Status',
         sortable: false,
         renderCell: (params) => {
           const onClick = (e) => {
-            e.stopPropagation(); // don't select this row after clicking
+            e.stopPropagation();
             const api: GridApi = params.api;
             const thisRow: Record<string, GridCellValue> = {};
             api
@@ -91,14 +94,13 @@ reload(){
               .forEach(
                 (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
               );
-            this.setRetailerStatus(thisRow);
-            //return alert(JSON.stringify(thisRow, null, 4));
+            this.activateDeactivateRetailer(thisRow);
           };
           return <Button
             variant="contained"
             onClick={onClick}
             style={{ fontSize: '13px', padding: 5, margin: '0px' }}
-          >Change Status</Button>;
+          >{params.value}</Button>;
         }, width: 150
       },
       {
@@ -129,12 +131,18 @@ reload(){
     return (
       <div>
         <center>
-          <AddRetailerBalance parentCallback={this.handleCallback}/>
+          <AddRetailerBalance parentCallback={this.handleCallback} />
           <Card style={{ width: "90%", marginTop: '60px' }} >
             <CardHeader
               title="View Retailers"
             />
             <Divider />
+            {this.state.macReset && (
+              <div className="alert alert-success">MAC reset Successifully</div>
+            )}
+            {this.state.macNotReset && (
+              <div className="alert alert-danger">Error occured</div>
+            )}
             <CardContent
               className="table-responsive"
             >
