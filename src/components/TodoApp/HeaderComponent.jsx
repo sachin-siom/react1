@@ -28,10 +28,6 @@ const HeaderComponent = () => {
                         {isUserLoggedIn && <li className="nav-link"><Link className="nav-link" to="/retailerTickets">Retailer Tickets</Link></li>}
                         
                     </ul>
-                    {/*<ul  className="navbar-nav justify-content-end">
-                        {!isUserLoggedIn && <li className="nav-link login"><Link className="nav-link" to="/login" style={{right:0}}>Login</Link></li>}  
-                    </ul>*/}
-
                     <div className="app__navbar-smallscreen">
 
                         <GiHamburgerMenu className="app__navbar-menu" color="#fff" fontSize={27} onClick={()=>setToggleMenu(true)}/>
