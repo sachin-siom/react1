@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthenticationService from "./AuthenticationService.js";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar,GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import { commissionReportUrl } from "./Constant.js";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -31,7 +31,15 @@ class CommissionReport extends React.Component {
     this.handleChangeTDate = this.handleChangeTDate.bind(this);
     this.submitData = this.submitData.bind(this);
     this.populateDataInTable = this.populateDataInTable.bind(this);
-    
+    this.CustomToolbar = this.CustomToolbar.bind(this);
+  }
+
+  CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
   }
   
 
@@ -72,20 +80,19 @@ class CommissionReport extends React.Component {
 
   render() {
     const columns = [
-      { field: "retailId", headerName: "Retailer Id", width: 200 },
-      { field: "totalPointsPlayed", headerName: "Total Points played", width: 200 },
-      { field: "pointsWon", headerName: "Total points won", width: 200 },
-      { field: "commissionPercentage", headerName: "Commission Percentage", width: 200 },
-      { field: "commission", headerName: "Total Commission", width: 200 },
-      { field: "adminProfit", headerName: "Admin Profit", width: 200 },
+      { field: "retailId", headerName: "Retailer Id", width: 200, headerAlign: 'center', align: 'center' },
+      { field: "totalPointsPlayed", headerName: "Total Points played", width: 200 , headerAlign: 'center', align: 'center'},
+      { field: "pointsWon", headerName: "Total points won", width: 200 , headerAlign: 'center', align: 'center'},
+      { field: "commissionPercentage", headerName: "Commission Percentage", width: 200, headerAlign: 'center', align: 'center' },
+      { field: "commission", headerName: "Total Commission", width: 200 , headerAlign: 'center', align: 'center'},
+      { field: "adminProfit", headerName: "Admin Profit", width: 200 , headerAlign: 'center', align: 'center'},
     ];
 
     return (
       <div>
           <center>
-        <Card style={{ width: "90%", marginTop: '60px' ,marginBottom:35}}>
+          <Card style={{ width: "70%", marginTop: '60px' }} >
           <CardHeader
-            // subheader="Manage "
             title="Commission Report"
           />
           <Divider />
@@ -95,10 +102,6 @@ class CommissionReport extends React.Component {
                 item
                 md={16}
                 sm={18}
-                // sx={{
-                //   display: "flex",
-                //   flexDirection: "column",
-                // }}
                 xs={20}
               >
                 <div className="col-sm-10">
@@ -145,6 +148,7 @@ class CommissionReport extends React.Component {
                     rows={this.state.data}
                     columns={columns}
                     pageSize={100}
+                    components={{ Toolbar: this.CustomToolbar }}
                   />
                 </div>
               </Grid>

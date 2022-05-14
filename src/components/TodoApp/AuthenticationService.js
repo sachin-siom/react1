@@ -20,6 +20,10 @@ class AuthenticationService {
         return axios.post(`${url}/${retailId}`, data)
     }
 
+    executeLastXTxn(url, retailId, limit){
+        return axios.get(`${url}/${retailId}/${limit}`)
+    }
+
     executeIncludeNumbers(url, data){
         return axios.put(`${url}/`, data)
     }

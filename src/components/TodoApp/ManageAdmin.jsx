@@ -158,10 +158,8 @@ class ManageAdmin extends Component {
             <>
                 <center>
 
-                    <Card style={{ width: "90%", marginTop: '60px' }}>
-                        <CardHeader
-                            // subheader="Manage "
-                            title="Insert Numbers" />
+                <Card style={{ width: "70%",  marginTop: '1%' }} >
+                        <CardHeader title="Insert Numbers" />
                         <Divider />
                         {this.state.include && (<div className="alert alert-success">Number Included Successfully</div>)}
                         {this.state.reset && (<div className="alert alert-danger">Number Removed Successfully</div>)}
@@ -174,7 +172,7 @@ class ManageAdmin extends Component {
                                     sm={18}
                                     xs={20}
                                 >
-                                    <div className={ReactTags}>
+                                    <div className={ReactTags} >
                                         <ReactTags tags={tags}
                                             placeholder="Add Numbers..."
                                             allowUnique={true}
@@ -184,7 +182,7 @@ class ManageAdmin extends Component {
                                             handleAddition={this.handleAddition}
                                             handleDrag={this.handleDrag}
                                             delimiters={delimiters} />
-
+                                    <br/>
                                     </div>
                                     <div>
                                         <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit} style={{ margin: 8 }} >
@@ -195,9 +193,7 @@ class ManageAdmin extends Component {
                                         </Button>
                                     </div>
                                     <div>
-                        <CardHeader
-                            // subheader="Manage "
-                            title="Manage Admin" />
+                        <CardHeader title="Manage Admin" />
                         <Divider />
                         {this.state.passAlert && (<div className="alert alert-success">Password Updated Successfully</div>)}
                         {this.state.proftAlert && (<div className="alert alert-success">Profit % updated Successfully</div>)}
