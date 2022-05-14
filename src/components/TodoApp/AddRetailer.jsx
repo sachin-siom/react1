@@ -59,7 +59,6 @@ class AddRetailer extends Component {
         <center>
         <Card style={{ width: "70%",  marginTop: '1%' }} >
             <CardHeader
-              // subheader="Manage "
               title="Add Retailer"
             />
             {this.state.retailer && (<div className="alert alert-success">New Retailer added Successfully</div>)}
@@ -70,10 +69,6 @@ class AddRetailer extends Component {
                   item
                   md={16}
                   sm={18}
-                  // sx={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  // }}
                   xs={20}
                 >
                   <div style={{display:'inline-block'}}>

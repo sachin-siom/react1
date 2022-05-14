@@ -127,7 +127,7 @@ class AddRetailerBalance extends Component {
   render() {
     const columns = [
       { field: 'no', headerName: 'Sr No', width: 20 },
-      { field: 'amount', headerName: 'Amount', width: 50 },
+      { field: 'amount', headerName: 'Amount', width: 100 },
       { field: 'date', headerName: 'Date', width: 200 }
     ]
     return (

@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthenticationService from "./AuthenticationService.js";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid,GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
 import { drawDetailsUrl } from "./Constant";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -31,6 +31,15 @@ class DrawDetails extends React.Component {
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
     this.populateDataInTable = this.populateDataInTable.bind(this);
     this.handleCallback = this.handleCallback.bind(this);
+    this.CustomToolbar = this.CustomToolbar.bind(this);
+  }
+
+  CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
   }
 
   handleCallback(childData) {
@@ -39,13 +48,13 @@ class DrawDetails extends React.Component {
 
   render() {
     const columns = [
-      { field: "id", headerName: "ID", width: 20 },
-      { field: "draw", headerName: "Draw Time", width: 150 },
-      { field: "setPoints", headerName: "Set Points", width: 150 },
-      { field: "wonPoints", headerName: "Won Points", width: 150 },
-      { field: "betCount", headerName: "Total Bet Count", width: 150 },
-      { field: "winCount", headerName: "Bet Won Count", width: 150 },
-      { field: "winNumbers", headerName: "Winning Numbers", width: 150 },
+      { field: "id", headerName: "ID", width: 150 , headerAlign: 'center', align: 'center'},
+      { field: "draw", headerName: "Draw Time", width: 150 , headerAlign: 'center', align: 'center'},
+      { field: "setPoints", headerName: "Set Points", width: 150 , headerAlign: 'center', align: 'center'},
+      { field: "wonPoints", headerName: "Won Points", width: 150 , headerAlign: 'center', align: 'center'},
+      { field: "betCount", headerName: "Total Bet Count", width: 150 , headerAlign: 'center', align: 'center'},
+      { field: "winCount", headerName: "Bet Won Count", width: 150 , headerAlign: 'center', align: 'center'},
+      { field: "winNumbers", headerName: "Winning Numbers", width: 150 , headerAlign: 'center', align: 'center'},
     ];
     
     const propsRowStyle = (rowData, index)=>({
@@ -111,6 +120,7 @@ class DrawDetails extends React.Component {
             rowStyle={propsRowStyle}
             columns={columns}
             pageSize={100}
+            components={{ Toolbar: this.CustomToolbar }}
           />
         </div>
         </Grid>

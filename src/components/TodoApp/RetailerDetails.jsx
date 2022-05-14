@@ -1,8 +1,7 @@
 import React, { Component, useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthenticationService from "./AuthenticationService.js";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
 import { retailerTicketUrl } from "./Constant";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -19,12 +18,6 @@ import {
 } from "@mui/material";
 
 
-
-
-
-
-
-
 class RetailerDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -39,6 +32,15 @@ class RetailerDetails extends React.Component {
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
     this.populateDataInTable = this.populateDataInTable.bind(this);
     this.handleCallback = this.handleCallback.bind(this);
+    this.CustomToolbar = this.CustomToolbar.bind(this);
+  }
+
+  CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
   }
 
   handleCallback(childData) {
@@ -78,26 +80,26 @@ class RetailerDetails extends React.Component {
       }) +
       " " +
       this.state.dropDownValue
-      );
-    }
-    
-    populateDataInTable(response) {
-      console.log(response.data);
-      this.setState({
-        data: response.data,
-      });
-    }
-    
-    render() {
-      const columns = [
-      { field: "id", headerName: "ID", width: 150, alignSelf: "center" },
-      { field: "draw", headerName: "Draw Time", width: 150 },
-      { field: "retailerId", headerName: "Retailer Id", width: 150 },
-      { field: "ticketid", headerName: "Ticket Id", width: 150 },
-      { field: "setPoints", headerName: "Set Points", width: 150 },
-      { field: "wonPoints", headerName: "Won Points", width: 150 },
-      { field: "claimed", headerName: "Is Claimed", width: 150 },
-      { field: "claimedTime", headerName: "Claimed Time", width: 150 },
+    );
+  }
+
+  populateDataInTable(response) {
+    console.log(response.data);
+    this.setState({
+      data: response.data,
+    });
+  }
+
+  render() {
+    const columns = [
+      { field: "id", headerName: "ID", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "draw", headerName: "Draw Time", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "retailerId", headerName: "Retailer Id", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "ticketid", headerName: "Ticket Id", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "setPoints", headerName: "Set Points", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "wonPoints", headerName: "Won Points", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "claimed", headerName: "Is Claimed", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "claimedTime", headerName: "Claimed Time", width: 150, headerAlign: 'center', align: 'center' },
     ];
     const datagridSx = {
       borderRadius: 2,
@@ -111,72 +113,73 @@ class RetailerDetails extends React.Component {
         fontSize: 16
       }
     };
-    const propsRowStyle = (rowData, index)=>({
-      backgroundColor: rowData.wonPoints> 0 ? '#90EE90' : '#fff',
+    const propsRowStyle = (rowData, index) => ({
+      backgroundColor: rowData.wonPoints > 0 ? '#90EE90' : '#fff',
     })
-    
-    
+
+
 
     return (
       <div>
-          <center>
+        <center>
           <Card style={{ width: "70%", marginTop: '60px' }} >
-          <CardHeader
-            title="Retailer Tickets"
-          />
-          <Divider />
-          <CardContent className="table-responsive">
-            <Grid container spacing={6} wrap="wrap">
-              <Grid
-                item
-                md={16}
-                sm={18}
-                xs={20}
-              >
-                <div className="col-sm-10">{this.state.error}</div>
-                <div className="col-sm-10">
-                  <RetailerDropDown parentCallback={this.handleCallback} />
-                </div>
-                <div className="col-sm-10">
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      label="Draw Date"
-                      inputFormat="yyyy-MM-dd"
-                      value={this.state.startDate}
-                      onChange={this.handleChange}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                  </LocalizationProvider>
-                </div>
-                <div className="col-sm-10">
-                  <Button
-                    style={{ margin: 8 }}
-                    onClick={this.submitData}
-                    variant="contained"
-                    color="success"
-                  >
-                    Get Retailer Tickets
-                  </Button>
-                </div>
-                <div
-                  style={{
-                    height: 400,
-                    width: "100%",
-                    textAlign: "center",
-                  }}
+            <CardHeader
+              title="Retailer Tickets"
+            />
+            <Divider />
+            <CardContent className="table-responsive">
+              <Grid container spacing={6} wrap="wrap">
+                <Grid
+                  item
+                  md={16}
+                  sm={18}
+                  xs={20}
                 >
-                  <DataGrid
-                    rows={this.state.data}
-                    columns={columns}
-                    rowStyle={propsRowStyle}
-                    sx={datagridSx}
-                    pageSize={100}
-                  />
-                </div>
+                  <div className="col-sm-10">{this.state.error}</div>
+                  <div className="col-sm-10">
+                    <RetailerDropDown parentCallback={this.handleCallback} />
+                  </div>
+                  <div className="col-sm-10">
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DesktopDatePicker
+                        label="Draw Date"
+                        inputFormat="yyyy-MM-dd"
+                        value={this.state.startDate}
+                        onChange={this.handleChange}
+                        renderInput={(params) => <TextField {...params} />}
+                      />
+                    </LocalizationProvider>
+                  </div>
+                  <div className="col-sm-10">
+                    <Button
+                      style={{ margin: 8 }}
+                      onClick={this.submitData}
+                      variant="contained"
+                      color="success"
+                    >
+                      Get Retailer Tickets
+                    </Button>
+                  </div>
+                  <div
+                    style={{
+                      height: 400,
+                      width: "100%",
+                      textAlign: "center",
+                    }}
+                  >
+                    <DataGrid
+                      rows={this.state.data}
+                      columns={columns}
+                      rowStyle={propsRowStyle}
+                      sx={datagridSx}
+                      pageSize={100}
+                      components={{ Toolbar: this.CustomToolbar }}
+                    />
+                  </div>
+                </Grid>
               </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
         </center>
       </div>
     );

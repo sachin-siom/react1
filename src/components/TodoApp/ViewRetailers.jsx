@@ -42,9 +42,9 @@ class ViewRetailers extends Component {
     }
     let retailId = thisRow.retailId
     AuthenticationService.executeRetailerStatusUpdate(url, retailId)
-      .then(response => { console.log('Retailer status is changed') })
+      .then(response => { this.reload(); console.log('Retailer status is changed') })
       .catch(error => { console.log('There is issue while loading reatiler data') })
-    this.reload();
+
   }
 
   handleCallback(childData) {
@@ -76,9 +76,9 @@ class ViewRetailers extends Component {
 
   render() {
     const columns = [
-      { field: 'retailId', headerName: 'ID', width: 20 },
-      { field: 'username', headerName: 'User Name', width: 150 },
-      { field: 'balance', headerName: 'Balance', width: 100 },
+      { field: 'retailId', headerName: 'Retailer ID', width: 90, headerAlign: 'center', align: 'center'},
+      { field: 'username', headerName: 'User Name', width: 180, headerAlign: 'center' , align: 'center'},
+      { field: 'balance', headerName: 'Balance', width: 100 , headerAlign: 'center', align: 'center'},
       {
         field: 'status',
         headerName: 'Change Status',
@@ -101,7 +101,31 @@ class ViewRetailers extends Component {
             onClick={onClick}
             style={{ fontSize: '13px', padding: 5, margin: '0px' }}
           >{params.value}</Button>;
-        }, width: 150
+        }, width: 150, headerAlign: 'center', align: 'center'
+      },
+      {
+        field: 'live',
+        headerName: 'Live',
+        sortable: false,
+        renderCell: (params) => {
+          const onClick = (e) => {
+            e.stopPropagation();
+            const api: GridApi = params.api;
+            const thisRow: Record<string, GridCellValue> = {};
+            api
+              .getAllColumns()
+              .filter((c) => c.field !== '__check__' && !!c)
+              .forEach(
+                (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+              );
+            this.activateDeactivateRetailer(thisRow);
+          };
+          return <Button
+            variant="contained"
+            onClick={onClick}
+            style={{ fontSize: '13px', padding: 5, margin: '0px' }}
+          >{params.value}</Button>;
+        }, width: 150, headerAlign: 'center', align: 'center'
       },
       {
         field: 'Reset MAC',
@@ -125,15 +149,15 @@ class ViewRetailers extends Component {
             variant="contained"
             onClick={onClick}
             style={{ fontSize: '13px', padding: 5, margin: '0px' }}> Reset MAC</Button>;
-        }, width: 250
+        }, width: 250, headerAlign: 'center', align: 'center'
       }
     ]
     return (
       <div>
         <center>
-        <Card style={{ width: "70%", marginTop: '1%' }} >
-          <AddRetailerBalance parentCallback={this.handleCallback} />
-          
+          <Card style={{ width: "70%", marginTop: '1%' }} >
+            <AddRetailerBalance parentCallback={this.handleCallback} />
+
             <CardHeader
               title="View Retailers"
             />
