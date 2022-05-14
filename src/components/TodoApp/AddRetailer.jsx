@@ -57,7 +57,7 @@ class AddRetailer extends Component {
     return (
       <>
         <center>
-          <Card style={{ width: "90%", marginTop: '60px' }}>
+        <Card style={{ width: "70%",  marginTop: '1%' }} >
             <CardHeader
               // subheader="Manage "
               title="Add Retailer"

@@ -56,7 +56,7 @@ class DrawDetails extends React.Component {
     return (
       <div>
         <center>
-        <Card style={{  width: "90%", marginTop: '60px' }}>
+        <Card style={{ width: "70%", marginTop: '60px' }} >
             <CardHeader
               // subheader="Manage "
               title="Draw Details"

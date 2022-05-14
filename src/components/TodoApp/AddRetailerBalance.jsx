@@ -133,7 +133,7 @@ class AddRetailerBalance extends Component {
     return (
       <>
         <center>
-          <Card style={{ width: "90%", marginTop: 60 }}>
+          <Card style={{ width: "70%", marginTop: "1%" }}>
             <CardHeader
               title="Add Retailer Balance"
             />
@@ -169,7 +169,7 @@ class AddRetailerBalance extends Component {
                       Reset
                     </Button>
                     {this.state.lastXData && (
-                    <div style={{ height: 700, width: '100%', alignContent: 'center', alignSelf: 'center' }}>
+                    <div style={{ height: 300, width: '100%', alignContent: 'center', alignSelf: 'center' }}>
                     <DataGrid
                       getRowId={(row) => row.no}
                       rows={this.state.data}

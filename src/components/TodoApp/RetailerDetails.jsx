@@ -120,7 +120,7 @@ class RetailerDetails extends React.Component {
     return (
       <div>
           <center>
-        <Card style={{ width: "90%", marginTop: '60px' ,marginBottom:35}}>
+          <Card style={{ width: "70%", marginTop: '60px' }} >
           <CardHeader
             title="Retailer Tickets"
           />

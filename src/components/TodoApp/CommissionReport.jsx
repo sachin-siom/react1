@@ -83,9 +83,8 @@ class CommissionReport extends React.Component {
     return (
       <div>
           <center>
-        <Card style={{ width: "90%", marginTop: '60px' ,marginBottom:35}}>
+          <Card style={{ width: "70%", marginTop: '60px' }} >
           <CardHeader
-            // subheader="Manage "
             title="Commission Report"
           />
           <Divider />
@@ -95,10 +94,6 @@ class CommissionReport extends React.Component {
                 item
                 md={16}
                 sm={18}
-                // sx={{
-                //   display: "flex",
-                //   flexDirection: "column",
-                // }}
                 xs={20}
               >
                 <div className="col-sm-10">

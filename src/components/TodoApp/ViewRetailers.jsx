@@ -131,8 +131,9 @@ class ViewRetailers extends Component {
     return (
       <div>
         <center>
+        <Card style={{ width: "70%", marginTop: '1%' }} >
           <AddRetailerBalance parentCallback={this.handleCallback} />
-          <Card style={{ width: "90%", marginTop: '60px' }} >
+          
             <CardHeader
               title="View Retailers"
             />
@@ -154,7 +155,7 @@ class ViewRetailers extends Component {
                   xs={20}
                 >
                   {this.state.dataFetchError && <div className="alert alert-warning">Unable to fetch the Retail Id's Data</div>}
-                  <div style={{ height: 700, width: '100%', alignContent: 'center', alignSelf: 'center' }}>
+                  <div style={{ height: 400, width: '100%', alignContent: 'center', alignSelf: 'center' }}>
                     <DataGrid
                       getRowId={(row) => row.retailId}
                       rows={this.state.data}
