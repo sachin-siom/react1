@@ -72,7 +72,7 @@ class LoginComponent extends Component {
     return (
       <div>
         <center>
-        <Card style={{ width: "75%", marginTop: 25 ,marginBottom:35}}>
+        <Card style={{ width: "85%",height:'500px', marginTop: 25}}>
           
           <CardContent className="table-responsive banner04">
             <Grid container spacing={6} wrap="wrap">
@@ -102,6 +102,7 @@ class LoginComponent extends Component {
           <div
             style={{
               padding: "10px",
+              margin:50,
               alignItems: "center",
               justifyContent: "center",
             }}
