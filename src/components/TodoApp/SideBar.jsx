@@ -500,7 +500,7 @@ const SideBar = () => {
             
           </ul>
         </nav>
-        <div id="content">
+        <div id="content" className="banner02">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid" >
               

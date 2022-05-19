@@ -72,7 +72,7 @@ class LoginComponent extends Component {
     return (
       <div>
         <center>
-        <Card style={{ width: "85%",height:'500px', marginTop: 25}}>
+        <Card style={{ width: "85%",height:'550px', marginTop: '150px'}}>
           
           <CardContent className="table-responsive banner04">
             <Grid container spacing={6} wrap="wrap">

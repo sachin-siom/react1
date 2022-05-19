@@ -22,7 +22,7 @@ h1{
 
 .banner02 {
   background: url("./assets/banner02.svg");
-  background-color: #002776;
+  /* background-color: #002776; */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
