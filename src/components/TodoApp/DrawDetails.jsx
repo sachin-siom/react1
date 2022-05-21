@@ -8,6 +8,7 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import RetailerDropDown from "./RetailerDropDown.jsx";
+
 import {
   Button,
   Card,
@@ -54,7 +55,7 @@ class DrawDetails extends React.Component {
       { field: "wonPoints", headerName: "Won Points", width: 150 , headerAlign: 'center', align: 'center'},
       { field: "betCount", headerName: "Total Bet Count", width: 150 , headerAlign: 'center', align: 'center'},
       { field: "winCount", headerName: "Bet Won Count", width: 150 , headerAlign: 'center', align: 'center'},
-      { field: "winNumbers", headerName: "Winning Numbers", width: 150 , headerAlign: 'center', align: 'center'},
+      { field: "winNumbers", headerName: "Winning Numbers", width: 150 , headerAlign: 'center', align: 'center', flex: 1},
     ];
     
     const propsRowStyle = (rowData, index)=>({
