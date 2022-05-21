@@ -18,3 +18,4 @@ export const API_PATH_BASE = 'http://171.79.39.179:8082/'
 export const registerMac = 'http://171.79.39.179:8082/admin/registerMac'
 export const changePasswordUrl = 'http://171.79.39.179:8082/admin/manageRetailer/changepassword'
 export const onlyRetailerId = 'http://171.79.39.179:8082/admin/retailer'
+

@@ -158,7 +158,7 @@ class ManageAdmin extends Component {
             <>
                 <center>
 
-                <Card style={{ width: "70%",  marginTop: '1%' }} >
+                <Card style={{ width: "95%",  marginTop: '1%', marginBottom:'5%' }} >
                         <CardHeader title="Insert Numbers" />
                         <Divider />
                         {this.state.include && (<div className="alert alert-success">Number Included Successfully</div>)}
@@ -174,6 +174,7 @@ class ManageAdmin extends Component {
                                 >
                                     <div className={ReactTags} >
                                         <ReactTags tags={tags}
+                                            style={{  width: '90%' }}
                                             placeholder="Add Numbers..."
                                             allowUnique={true}
                                             suggestions={suggestions}
@@ -182,8 +183,8 @@ class ManageAdmin extends Component {
                                             handleAddition={this.handleAddition}
                                             handleDrag={this.handleDrag}
                                             delimiters={delimiters} />
-                                    <br/>
                                     </div>
+                                    <br/>
                                     <div>
                                         <Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit} style={{ margin: 8 }} >
                                             Insert Number
@@ -206,8 +207,8 @@ class ManageAdmin extends Component {
                       disabled={true}
                       value={this.state.userName}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width: '25%' }}
-                    />
+                      style={{ margin: 8, width: '90%' }}
+                    /> <br/>
                     <TextField
                       id="outlined-basic"
                       label="Password"
@@ -216,8 +217,8 @@ class ManageAdmin extends Component {
                       name="password"
                       value={this.state.password}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width: '25%' }}
-                    />
+                      style={{ margin: 8, width: '90%' }}
+                    /> <br/>
                     <TextField
                       id="outlined-basic"
                       label="Profit %"
@@ -225,7 +226,7 @@ class ManageAdmin extends Component {
                       name="profitPercentage"
                       value={this.state.profitPercentage}
                       onChange={this.setProperty}
-                      style={{ margin: 8, width: '25%' }}
+                      style={{ margin: 8, width: '90%' }}
                     />
                     <div>
                       <Button

@@ -133,7 +133,7 @@ class AddRetailerBalance extends Component {
     return (
       <>
         <center>
-          <Card style={{ width: "70%", marginTop: "1%" }}>
+          <Card style={{ width: "95%", marginTop: '1%', marginBottom: '5%'}}>
             <CardHeader
               title="Add Retailer Balance"
             />
@@ -153,7 +153,7 @@ class AddRetailerBalance extends Component {
                   xs={20}
                 >
                   <RetailerDropDown parentCallback={this.handleCallback} />
-                  <TextField style={{ width: '35%' }} id="outlined-basic" label="Balance/txn" variant="outlined" name="balance" required value={this.state.balance}
+                  <TextField style={{ width: '100%' }} id="outlined-basic" label="Balance/txn" variant="outlined" name="balance" required value={this.state.balance}
                     onChange={this.setProperty} />
                   <div>
                     <Button type="submit" variant="contained" color="primary" onClick={this.addRetailerBalance} style={{ margin: 8 }}>

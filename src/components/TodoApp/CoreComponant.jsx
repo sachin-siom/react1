@@ -8,24 +8,24 @@ import HeaderComponent from "./HeaderComponent.jsx";
 import FooterComponent from "./FooterComponent.jsx";
 import LogoutComponent from "./LogoutComponent.jsx";
 import WelcomeComponent from './WelcomeComponent.jsx'
-import ListTodosComponentWithParams from './ListTodosComponentWithParams.jsx'
-import RetailerDetailsComponentWithParams from './RetailerDetailsComponentWithParams.jsx'
-import AddRetailer from './AddRetailer.jsx'
-import ViewRetailers from './ViewRetailers.jsx'
-import AddRetailerBalance from './AddRetailerBalance.jsx'
-import Users from '../components/users.jsx'
-import Commissionreport from "../components/commissionreport.jsx";
-import Liveplayer from "../components/liveplayer.jsx";
-import Adminreport from "../components/adminreport.jsx";
-import Fairplaymanagement from "../components/fairplaymanagement.jsx";
-import Operator from "../components/operator.jsx";
-import Support from "../components/support.jsx";
-import Resetmac from "../components/resetmac.jsx";
-import Settings from "../components/settings.jsx";
-import Drawdetails from "../components/reports/drawdetails.jsx";
-import RetailerTicket from "../components/reports/retailerTickets.jsx";
-import CommissionReport from '../TodoApp/CommissionReport.jsx'
-import ManageAdmin from "./ManageAdmin.jsx";
+// import ListTodosComponentWithParams from './ListTodosComponentWithParams.jsx'
+// import RetailerDetailsComponentWithParams from './RetailerDetailsComponentWithParams.jsx'
+// import AddRetailer from './AddRetailer.jsx'
+// import ViewRetailers from './ViewRetailers.jsx'
+// import AddRetailerBalance from './AddRetailerBalance.jsx'
+// import Users from '../components/users.jsx'
+// import Commissionreport from "../components/commissionreport.jsx";
+// import Liveplayer from "../components/liveplayer.jsx";
+// import Adminreport from "../components/adminreport.jsx";
+// import Fairplaymanagement from "../components/fairplaymanagement.jsx";
+// import Operator from "../components/operator.jsx";
+// import Support from "../components/support.jsx";
+// import Resetmac from "../components/resetmac.jsx";
+// import Settings from "../components/settings.jsx";
+// import Drawdetails from "../components/reports/drawdetails.jsx";
+// import RetailerTicket from "../components/reports/retailerTickets.jsx";
+// import CommissionReport from '../TodoApp/CommissionReport.jsx'
+// import ManageAdmin from "./ManageAdmin.jsx";
 
 
 class CoreComponant extends Component{
@@ -39,8 +39,10 @@ class CoreComponant extends Component{
                     <HeaderComponentWithNavigation/>
                     <Routes>
                         <Route path="/" exact element={<LoginComponentWithNavigation />}/>
-                        <Route path="/login" element={<LoginComponentWithNavigation />}/>
-                        <Route path="/welcome/:name" element={<AuthenticatedRoute><WelcomeComponentWithParams /></AuthenticatedRoute>} />
+                        <Route path="/login" element={<LoginComponentWithNavigation />}/> 
+                        <Route path="/logout" element={<AuthenticatedRoute><LogoutComponent /> </AuthenticatedRoute>}/>
+                       
+                         {/*<Route path="/welcome/:name" element={<AuthenticatedRoute><WelcomeComponentWithParams /></AuthenticatedRoute>} />
 
                         <Route path="/addRetailer" element={<AuthenticatedRoute><AddRetailer /></AuthenticatedRoute>} />
                         <Route path="/viewRetailers" element={<AuthenticatedRoute><ViewRetailers /></AuthenticatedRoute>} />
@@ -52,7 +54,6 @@ class CoreComponant extends Component{
                         <Route path="/CommissionReport" element={<AuthenticatedRoute><CommissionReport/></AuthenticatedRoute>} />
                         <Route path="/logout" element={<AuthenticatedRoute><LogoutComponent /> </AuthenticatedRoute>}/>
                         
-                        {/* SideBar Components Routing */}
                         <Route path="/users" element={<AuthenticatedRoute><Users/></AuthenticatedRoute>} />
                         <Route path="/commissionreport" element={<AuthenticatedRoute><Commissionreport/></AuthenticatedRoute>} />
                         <Route path="/liveplayer" element={<AuthenticatedRoute><Liveplayer/></AuthenticatedRoute>} />
@@ -65,9 +66,9 @@ class CoreComponant extends Component{
                         <Route path="/reports/drawdetails" element={<AuthenticatedRoute><Drawdetails/></AuthenticatedRoute>} />
                         <Route path="/reports/retailerticket" element={<AuthenticatedRoute><RetailerTicket/></AuthenticatedRoute>} />
 
-
+*/}
                         <Route path="*" element={<ErrorComponant/>}/>
-                    </Routes>
+                    </Routes> 
                     <FooterComponent/>
                 </Router>
                 {/*<LoginComponent/>
