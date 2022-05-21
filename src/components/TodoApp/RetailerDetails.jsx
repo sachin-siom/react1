@@ -99,7 +99,7 @@ class RetailerDetails extends React.Component {
       { field: "setPoints", headerName: "Set Points", width: 150, headerAlign: 'center', align: 'center' },
       { field: "wonPoints", headerName: "Won Points", width: 150, headerAlign: 'center', align: 'center' },
       { field: "claimed", headerName: "Is Claimed", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "claimedTime", headerName: "Claimed Time", width: 150, headerAlign: 'center', align: 'center' },
+      { field: "claimedTime", headerName: "Claimed Time", width: 150, headerAlign: 'center', align: 'center', flex: 1 },
     ];
     const datagridSx = {
       borderRadius: 2,
