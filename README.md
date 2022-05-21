@@ -14,4 +14,4 @@ This is the time spent on previous repo:
          <br>
 [![wakatime](https://wakatime.com/badge/user/ebd9048f-e0e9-4dcc-acbc-0fc646a232fa/project/454131d0-4386-49d3-b3c0-7beeb7cddad8.svg)](https://wakatime.com/badge/user/ebd9048f-e0e9-4dcc-acbc-0fc646a232fa/project/454131d0-4386-49d3-b3c0-7beeb7cddad8)
 
-[![codingActivity](https://wakatime.com/share/@ebd9048f-e0e9-4dcc-acbc-0fc646a232fa/7dc626ed-d337-4c3b-98ef-27f5bddb7ebf.svg)](https://wakatime.com/share/@ebd9048f-e0e9-4dcc-acbc-0fc646a232fa/7dc626ed-d337-4c3b-98ef-27f5bddb7ebf.svg)
+[![codingActivity](https://wakatime.com/share/@ebd9048f-e0e9-4dcc-acbc-0fc646a232fa/343174b0-954c-459c-95bd-06a5f8d58b32.svg)](https://wakatime.com/share/@ebd9048f-e0e9-4dcc-acbc-0fc646a232fa/343174b0-954c-459c-95bd-06a5f8d58b32.svg)
