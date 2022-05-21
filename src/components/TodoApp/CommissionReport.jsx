@@ -91,7 +91,7 @@ class CommissionReport extends React.Component {
     return (
       <div>
           <center>
-          <Card style={{ width: "70%", marginTop: '60px' }} >
+          <Card style={{ width: "95%", marginTop: '1%' }} >
           <CardHeader
             title="Commission Report"
           />
