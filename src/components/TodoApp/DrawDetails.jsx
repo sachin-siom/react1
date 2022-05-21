@@ -14,6 +14,7 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import RetailerDropDown from "./RetailerDropDown.jsx";
+
 import {
   Box,
   Button,
@@ -33,6 +34,7 @@ class DrawDetails extends React.Component {
       dropDownValue: "",
       startDate: new Date(),
     };
+    
     this.handleChange = this.handleChange.bind(this);
     this.submitData = this.submitData.bind(this);
     this.handleDropDownChange = this.handleDropDownChange.bind(this);
@@ -186,6 +188,7 @@ class DrawDetails extends React.Component {
                           backgroundColor: "rgba(157, 255, 118, 0.49)",
                           color: "#1a3e72",
                           fontWeight: "600",
+                          width: "100%",
                         },
                       }}
                     >

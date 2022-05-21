@@ -93,7 +93,7 @@ class CommissionReport extends React.Component {
           <center>
           <Card style={{ width: "95%", marginTop: '1%' }} >
           <CardHeader
-            title="Commission Report"
+            title="Admin Report"
           />
           <Divider />
           <CardContent className="table-responsive">
@@ -133,7 +133,7 @@ class CommissionReport extends React.Component {
                     variant="contained"
                     color="success"
                   >
-                    Get Commission Report
+                    Get Admin Report
                   </Button>
                 </div>
                 <div

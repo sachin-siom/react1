@@ -15,6 +15,7 @@ export const updateProfitPercentage = 'http://171.79.39.179:8082/admin/manageRet
 export const includeNumbers = 'http://171.79.39.179:8082/admin/includeNumber/1'
 export const lastXtxn = 'http://171.79.39.179:8082/admin/lastXTxn'
 export const API_PATH_BASE = 'http://171.79.39.179:8082/'
-export const registerMac = 'http://171.79.39.179:8082/common/registerMac'
-export const changePasswordUrl = 'http://171.79.39.179:8082/common/manageRetailer/changepassword'
+export const registerMac = 'http://171.79.39.179:8082/admin/registerMac'
+export const changePasswordUrl = 'http://171.79.39.179:8082/admin/manageRetailer/changepassword'
 export const onlyRetailerId = 'http://171.79.39.179:8082/admin/retailer'
+

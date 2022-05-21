@@ -122,7 +122,7 @@ class ViewRetailers extends Component {
           };
           return <Button
             variant="contained"
-            onClick={onClick}
+            //onClick={onClick}
             style={{ fontSize: '13px', padding: 5, margin: '0px' }}
           >{params.value}</Button>;
         }, width: 150, headerAlign: 'center', align: 'center'
