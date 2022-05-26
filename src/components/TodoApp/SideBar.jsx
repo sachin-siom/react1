@@ -13,7 +13,7 @@ import AuthenticationService from "./AuthenticationService.js";
 // import Menu from "@mui/material/Menu";
 // import MenuItem from "@mui/material/MenuItem";
 
-
+import logo from '../../assets/logo.png';
 
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom' 
 import withNavigation from './WithNavigation.jsx'
@@ -88,7 +88,8 @@ import ManageAdmin from "./ManageAdmin.jsx";
 // }));
 
 const SideBar = () => {
-  const [toggleMenu, setToggleMenu] = React.useState(false);
+  
+  const [isContentToggled, setIsContentToggled] = useState(window.matchMedia("max-width: 768px").matches, false);
 
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
@@ -100,9 +101,7 @@ const SideBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const LoginComponentWithNavigation = withNavigation(LoginComponent);
   const WelcomeComponentWithParams = withParams(WelcomeComponent);
-  const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
   return (
     <>
     <>
@@ -419,9 +418,10 @@ const SideBar = () => {
       <div className="wrapper">
 
         {/* <!-- Sidebar  --> */}
-        
+        {isContentToggled && (
         <nav id="sidebar">
           <div className="sidebar-header">
+            {/* <img src={logo} height="150" width="150"alt="Logo" /> */}
             <h3>BhagyaLaxmi Lottery</h3>
           </div>
 
@@ -500,11 +500,13 @@ const SideBar = () => {
             
           </ul>
         </nav>
+        )}
         <div id="content" className="banner02">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid" >
               
               <button
+                onClick={() => setIsContentToggled(true)}
                 className="btn btn-info"
                 type="button"
                 id="sidebarCollapse"
