@@ -138,7 +138,7 @@ class CommissionReport extends React.Component {
                 </div>
                 <div
                   style={{
-                    height: 400,
+                    height: 700,
                     width: "100%",
                     textAlign: "center",
                   }}
