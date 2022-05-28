@@ -195,7 +195,6 @@ class ViewRetailers extends Component {
       <div>
         <center>
           <Card style={{ width: "95%", marginTop: '1%', marginBottom: '5%'}} >
-            <AddRetailerBalance parentCallback={this.handleCallback} />
 
             <CardHeader
               title="View Retailers"

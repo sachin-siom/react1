@@ -438,7 +438,7 @@ const SideBar = () => {
             <li>
             <Link className="nav-link" to="/viewRetailers" >
               
-                View Users
+                View Retailers
             </Link>
             </li>
 
