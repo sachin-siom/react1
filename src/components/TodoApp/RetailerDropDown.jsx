@@ -47,6 +47,8 @@ class RetailerDropDown extends Component {
                     Retails Ids
                 </InputLabel>
                 <NativeSelect
+                    placeholder="Select ID"
+                    style={{ margin: 8, fontSize:18, width:100 }}
                     value={this.state.dropDownValue}
                     onClick={this.handleChange}
                     onChange={this.handleChange}

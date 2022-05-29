@@ -1,13 +1,19 @@
 import React, { Component, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthenticationService from "./AuthenticationService.js";
-import { DataGrid, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarExport,
+} from "@mui/x-data-grid";
+import clsx from "clsx";
 import { retailerTicketUrl } from "./Constant";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import RetailerDropDown from "./RetailerDropDown.jsx";
 import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -16,7 +22,6 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-
 
 class RetailerDetails extends React.Component {
   constructor(props) {
@@ -78,8 +83,8 @@ class RetailerDetails extends React.Component {
         month: "numeric",
         day: "numeric",
       }) +
-      " " +
-      this.state.dropDownValue
+        " " +
+        this.state.dropDownValue
     );
   }
 
@@ -92,49 +97,94 @@ class RetailerDetails extends React.Component {
 
   render() {
     const columns = [
-      { field: "id", headerName: "ID", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "draw", headerName: "Draw Time", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "retailerId", headerName: "Retailer Id", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "ticketid", headerName: "Ticket Id", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "setPoints", headerName: "Set Points", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "wonPoints", headerName: "Won Points", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "claimed", headerName: "Is Claimed", width: 150, headerAlign: 'center', align: 'center' },
-      { field: "claimedTime", headerName: "Claimed Time", width: 150, headerAlign: 'center', align: 'center', flex: 1 },
+      {
+        field: "id",
+        headerName: "ID",
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
+      {
+        field: "draw",
+        headerName: "Draw Time",
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
+      {
+        field: "retailerId",
+        headerName: "Retailer Id",
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
+      {
+        field: "ticketid",
+        headerName: "Ticket Id",
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
+      {
+        field: "setPoints",
+        headerName: "Set Points",
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
+      {
+        field: "wonPoints",
+        headerName: "Won Points",
+        cellClassName: (params) => {
+          if (params.value == null) {
+            return "";
+          }
+
+          return clsx("super-app", {
+            positive: params.value > 0,
+          });
+        },
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
+      {
+        field: "claimed",
+        headerName: "Is Claimed",
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
+      {
+        field: "claimedTime",
+        headerName: "Claimed Time",
+        width: 150,
+        headerAlign: "center",
+        align: "center",
+      },
     ];
     const datagridSx = {
       borderRadius: 2,
       "& .MuiDataGrid-main": { borderRadius: 2 },
       "& .MuiDataGrid-virtualScrollerRenderZone": {
         "& .MuiDataGrid-row": {
-          "&:nth-child(2n)": { backgroundColor: "rgba(235, 235, 235, .7)" }
-        }
+          "&:nth-child(2n)": { backgroundColor: "rgba(235, 235, 235, .7)" },
+        },
       },
       "& .MuiDataGrid-columnHeaders": {
-        fontSize: 16
-      }
+        fontSize: 16,
+      },
     };
-    const propsRowStyle = (rowData, index) => ({
-      backgroundColor: rowData.wonPoints > 0 ? '#90EE90' : '#fff',
-    })
-
-
 
     return (
       <div>
         <center>
-          <Card style={{ width: "95%", marginTop: '1%' }} >
-            <CardHeader
-              title="Retailer Tickets"
-            />
+          <Card style={{ width: "95%", marginTop: "1%" }}>
+            <CardHeader title="Retailer Tickets" />
             <Divider />
             <CardContent className="table-responsive">
               <Grid container spacing={6} wrap="wrap">
-                <Grid
-                  item
-                  md={16}
-                  sm={18}
-                  xs={20}
-                >
+                <Grid item md={16} sm={18} xs={20}>
                   <div className="col-sm-10">{this.state.error}</div>
                   <div className="col-sm-10">
                     <RetailerDropDown parentCallback={this.handleCallback} />
@@ -162,19 +212,30 @@ class RetailerDetails extends React.Component {
                   </div>
                   <div
                     style={{
-                      height: 400,
+                      height: 700,
                       width: "100%",
                       textAlign: "center",
                     }}
                   >
-                    <DataGrid
-                      rows={this.state.data}
-                      columns={columns}
-                      rowStyle={propsRowStyle}
-                      sx={datagridSx}
-                      pageSize={100}
-                      components={{ Toolbar: this.CustomToolbar }}
-                    />
+                    <Box
+                      sx={{
+                        height: 700,
+                        width: 1,
+                        "& .super-app.positive": {
+                          backgroundColor: "rgba(157, 255, 118, 0.49)",
+                          color: "#1a3e72",
+                          fontWeight: "600",
+                        },
+                      }}
+                    >
+                      <DataGrid
+                        rows={this.state.data}
+                        columns={columns}
+                        sx={datagridSx}
+                        pageSize={100}
+                        components={{ Toolbar: this.CustomToolbar }}
+                      />
+                    </Box>
                   </div>
                 </Grid>
               </Grid>
