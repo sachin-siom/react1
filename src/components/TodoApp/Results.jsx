@@ -11,11 +11,35 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
+import { openController } from "./Constant";
+import AuthenticationService from "./AuthenticationService";
 // import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 // import AdapterDateFns from "@mui/lab/AdapterDateFns";
 // import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
+// componentDidMount() {
+  // AuthenticationService.executeopenController(`${openController}`)
+  // .then((response) => { this.setState({ retailIds: response.data }); })
+  // .catch((error) => {console.log('problem in retiving retailers id'); this.setState({dataFetchError : true})});
+// }
+
 const Results = () => {
+
+  const [Users, fetchUsers] = useState([])
+
+  const getData = () => {
+    AuthenticationService.executeopenController(`${openController}`)
+    .then((response) => {fetchUsers(response.data) })
+    .catch((error) => {console.log('problem in retiving retailers id');});
+  
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+  console.log(Users)
+
+
   const sampleData = [
     {
       col1: "2523",
