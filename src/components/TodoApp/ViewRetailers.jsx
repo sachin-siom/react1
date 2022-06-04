@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AuthenticationService from "./AuthenticationService.js";
 import { getAllRetailer } from './Constant'
 import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
-import { enableRetailer, disableRetailer, registerMac } from './Constant'
+import { enableRetailer, disableRetailer, registerMac, changePasswordUrl } from './Constant'
 import AddRetailerBalance from './AddRetailerBalance';
 
 import {
@@ -23,12 +23,26 @@ class ViewRetailers extends Component {
       data: [],
       macNotReset: false,
       macReset: false,
+      passAlert: false,
+      errorAlert: false,
       dataFetchError: false
     };
     this.activateDeactivateRetailer = this.activateDeactivateRetailer.bind(this);
     this.resetMAC = this.resetMAC.bind(this);
     this.handleCallback = this.handleCallback.bind(this);
     this.reload = this.reload.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
+  }
+
+  resetPassword(thisRow) {
+    let retailId = thisRow.retailId
+    console.log('retails is while resetting password' + retailId)
+    const passwordData = {
+      "password": "test123"
+    }
+    AuthenticationService.changePassword(`${changePasswordUrl}/${retailId}`, passwordData)
+      .then((response) => { this.setState({ passAlert: true }); console.log('password updated successsfully to test123') })
+      .catch((error) => { this.setState({ errorAlert: true }); })
   }
 
   activateDeactivateRetailer(thisRow) {
@@ -76,9 +90,10 @@ class ViewRetailers extends Component {
 
   render() {
     const columns = [
-      { field: 'retailId', headerName: 'Retailer ID', width: 90, headerAlign: 'center', align: 'center'},
-      { field: 'username', headerName: 'User Name', width: 180, headerAlign: 'center' , align: 'center'},
-      { field: 'balance', headerName: 'Balance', width: 100 , headerAlign: 'center', align: 'center'},
+      { field: 'retailId', headerName: 'Retailer ID', width: 90, headerAlign: 'center', align: 'center' },
+      { field: 'username', headerName: 'User Name', width: 180, headerAlign: 'center', align: 'center' },
+      { field: 'balance', headerName: 'Balance', width: 100, headerAlign: 'center', align: 'center' },
+      { field: 'profitPercentage', headerName: 'commission', width: 100, headerAlign: 'center', align: 'center' },
       {
         field: 'status',
         headerName: 'Change Status',
@@ -118,7 +133,7 @@ class ViewRetailers extends Component {
               .forEach(
                 (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
               );
-            this.activateDeactivateRetailer(thisRow);
+            //this.activateDeactivateRetailer(thisRow);
           };
           return <Button
             variant="contained"
@@ -149,14 +164,37 @@ class ViewRetailers extends Component {
             variant="contained"
             onClick={onClick}
             style={{ fontSize: '13px', padding: 5, margin: '0px' }}> Reset MAC</Button>;
-        }, width: 250, headerAlign: 'center', align: 'center'
+        }, width: 170, headerAlign: 'center', align: 'center'
+      },
+      {
+        field: 'Reset Password',
+        headerName: 'Reset Password',
+        sortable: false,
+        renderCell: (params) => {
+          const onClick = (e) => {
+            e.stopPropagation();
+            const api: GridApi = params.api;
+            const thisRow: Record<string, GridCellValue> = {};
+
+            api
+              .getAllColumns()
+              .filter((c) => c.field !== '__check__' && !!c)
+              .forEach(
+                (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+              );
+            this.resetPassword(thisRow);
+          };
+          return <Button
+            variant="contained"
+            onClick={onClick}
+            style={{ fontSize: '13px', padding: 5, margin: '0px' }}> Reset Password</Button>;
+        }, width: 200, headerAlign: 'center', align: 'center'
       }
     ]
     return (
       <div>
         <center>
           <Card style={{ width: "95%", marginTop: '1%', marginBottom: '5%'}} >
-            <AddRetailerBalance parentCallback={this.handleCallback} />
 
             <CardHeader
               title="View Retailers"
@@ -165,6 +203,7 @@ class ViewRetailers extends Component {
             {this.state.macReset && (
               <div className="alert alert-success">MAC reset Successifully</div>
             )}
+             {this.state.passAlert && (<div className="alert alert-success">Password Updated to 'test123' Successfully</div>)}
             {this.state.macNotReset && (
               <div className="alert alert-danger">Error occured</div>
             )}

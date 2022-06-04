@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
+import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
 
 import {
   Button,
@@ -29,7 +30,7 @@ const Results = () => {
   const getData = () => {
     AuthenticationService.executeopenController(`${openController}`)
     .then((response) => {fetchUsers(response.data) })
-    .catch((error) => {console.log('problem in retiving retailers id');});
+    .catch((error) => {console.log('problem in retiving winners list');});
   
   }
 
@@ -134,6 +135,15 @@ const Results = () => {
     // we can write our code here
 //     console.log('done');
 //   }, 1000*60*15);
+
+  const columns1 = [
+    { field: 'drawTime', headerName: 'Sr No', width: 100, headerAlign: 'center', align: 'center' },
+    { field: 'date', headerName: 'Date', width: 100 , headerAlign: 'center', align: 'center'},
+    { field: '_1_100', headerName: '1-100', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_101_200', headerName: '101-200', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_201_300', headerName: '201-300', width: 80, headerAlign: 'center', align: 'center'}
+  ]
+
   return (
     <>
       <center>
@@ -143,8 +153,14 @@ const Results = () => {
           {/* Show current date */}
           <h3>{date}</h3>
           <CardContent className="table-responsive">
+          <DataGrid
+                      getRowId={(row) => row.drawTime}
+                      autoHeight {...Users}
+                      rows={Users}
+                      columns={columns1}
+                    />
             {/* to get many tables we need to map the data */}
-              <table
+              {/* <table
                 {...getTableProps()}
                 style={{
                   border: "solid 1px black",
@@ -192,7 +208,7 @@ const Results = () => {
                     );
                   })}
                 </tbody>
-              </table>
+              </table> */}
           </CardContent>
         </Card>
       </center>
