@@ -36,7 +36,7 @@ class AuthenticationService {
         return axios.post(`${url}`, data)
     }
     executeopenController(url ){
-        return axios.post(`${url}`)
+        return axios.get(`${url}`)
     }
     executeRetailers(url){
         return axios.get(`${url}`)
