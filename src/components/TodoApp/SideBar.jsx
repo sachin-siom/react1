@@ -42,6 +42,7 @@ import Drawdetails from "../components/reports/drawdetails.jsx";
 import RetailerTicket from "../components/reports/retailerTickets.jsx";
 import CommissionReport from '../TodoApp/CommissionReport.jsx'
 import ManageAdmin from "./ManageAdmin.jsx";
+import Results from "./Results";
 
 
 // const StyledMenu = styled((props) => (
@@ -541,7 +542,7 @@ const SideBar = () => {
                         <Route path="/reports/retailerticket" element={<AuthenticatedRoute><RetailerTicket/></AuthenticatedRoute>} />
 
 
-                    </Routes>
+            </Routes>
 
                 {/* Contnet is displayed here*/}
         </div>
