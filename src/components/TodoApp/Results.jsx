@@ -24,7 +24,6 @@ import AuthenticationService from "./AuthenticationService";
 // }
 
 const Results = () => {
-
   const [Users, fetchUsers] = useState([])
 
   const getData = () => {
@@ -39,32 +38,39 @@ const Results = () => {
   }, [])
   console.log(Users)
 
+  // const testsize = 10;
+  // if(testsize <= 0) throw "Error";
+  // const arr=[]
+  // for( let i=0; i< Users[2].winnerNumber.length; i += testsize ) {
+
+  //   const users = Users[2].winnerNumber.slice(i, i+ testsize);
+  //   console.log(users)
+  // }
+
+  
+  const testrows = [...Array( Math.ceil(Users[0].winnerNumber.length / 10) )];
+
+  const productRows = testrows.map( (row, idx) => Users[0].winnerNumber.slice(idx * 10, idx * 10 +10) );
+  console.log(productRows)
+  // map the rows as div.row
+  // for ( let i=0; i<testrows.length; i++ ) {
+  //   testrows[i] = [...Array(10)];
+  //   console.log(testrows[i])
+  // }
+
 
   const sampleData = [
+    
     {
-      col1: "2523",
-      col2: "2723",
-      col3: "6623",
-      col4: "2523",
-      col5: "2723",
-      col6: "6623",
-      col7: "2523 2555",
-      col8: "2723",
-      col9: "6623",
-      col10: "6623",
+      productRows,
     },
   ];
 
+  // for(let i=0; i<productRows.length; i++) {
+  //   const datat = sampleData[0].productRows[i];
+  // }
   const data = React.useMemo(
     () => [
-      sampleData[0],
-      sampleData[0],
-      sampleData[0],
-      sampleData[0],
-      sampleData[0],
-      sampleData[0],
-      sampleData[0],
-      sampleData[0],
       sampleData[0],
     ],
     []
