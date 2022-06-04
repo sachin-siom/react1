@@ -39,10 +39,10 @@ class CoreComponant extends Component{
                 <Router>
                     <HeaderComponentWithNavigation/>
                     <Routes>
-                        <Route path="/" exact element={<LoginComponentWithNavigation />}/>
-                        <Route path="/login" element={<LoginComponentWithNavigation />}/> 
+                        {/* <Route path="/" exact element={<LoginComponentWithNavigation />}/> */}
+                        <Route path="/login" exact element={<LoginComponentWithNavigation />}/> 
                         <Route path="/logout" element={<AuthenticatedRoute><LogoutComponent /> </AuthenticatedRoute>}/>
-                        <Route path="/results" element={<Results />}/>
+                        <Route path="/" element={<Results />}/>
                        
                          {/*<Route path="/welcome/:name" element={<AuthenticatedRoute><WelcomeComponentWithParams /></AuthenticatedRoute>} />
 
