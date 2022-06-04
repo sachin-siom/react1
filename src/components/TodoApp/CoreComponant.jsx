@@ -8,6 +8,7 @@ import HeaderComponent from "./HeaderComponent.jsx";
 import FooterComponent from "./FooterComponent.jsx";
 import LogoutComponent from "./LogoutComponent.jsx";
 import WelcomeComponent from './WelcomeComponent.jsx'
+import Results from "./Results.jsx";
 // import ListTodosComponentWithParams from './ListTodosComponentWithParams.jsx'
 // import RetailerDetailsComponentWithParams from './RetailerDetailsComponentWithParams.jsx'
 // import AddRetailer from './AddRetailer.jsx'
@@ -41,6 +42,7 @@ class CoreComponant extends Component{
                         <Route path="/" exact element={<LoginComponentWithNavigation />}/>
                         <Route path="/login" element={<LoginComponentWithNavigation />}/> 
                         <Route path="/logout" element={<AuthenticatedRoute><LogoutComponent /> </AuthenticatedRoute>}/>
+                        <Route path="/results" element={<Results />}/>
                        
                          {/*<Route path="/welcome/:name" element={<AuthenticatedRoute><WelcomeComponentWithParams /></AuthenticatedRoute>} />
 

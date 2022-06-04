@@ -18,4 +18,5 @@ export const API_PATH_BASE = 'http://223.181.152.148:8082/'
 export const registerMac = 'http://223.181.152.148:8082/admin/registerMac'
 export const changePasswordUrl = 'http://223.181.152.148:8082/admin/manageRetailer/changepassword'
 export const onlyRetailerId = 'http://223.181.152.148:8082/admin/retailer'
+export const openController = 'http://223.235.13.102:8082/open/winnerListByDateNew'
 

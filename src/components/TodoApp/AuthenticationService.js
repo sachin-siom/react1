@@ -35,7 +35,9 @@ class AuthenticationService {
     executeResetMAC(url ,data){
         return axios.post(`${url}`, data)
     }
-
+    executeopenController(url ){
+        return axios.post(`${url}`)
+    }
     executeRetailers(url){
         return axios.get(`${url}`)
     }
