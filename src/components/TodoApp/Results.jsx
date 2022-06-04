@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
-
+import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom' 
 import {
   Button,
   Box,
@@ -14,16 +14,8 @@ import {
 } from "@mui/material";
 import { openController } from "./Constant";
 import AuthenticationService from "./AuthenticationService";
-// import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-// import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
-
-// componentDidMount() {
-  // AuthenticationService.executeopenController(`${openController}`)
-  // .then((response) => { this.setState({ retailIds: response.data }); })
-  // .catch((error) => {console.log('problem in retiving retailers id'); this.setState({dataFetchError : true})});
-// }
-
+import withNavigation from './WithNavigation.jsx'
+import LoginComponent from "./LoginComponent.jsx";
 const Results = () => {
   const [Users, fetchUsers] = useState([])
 
@@ -39,109 +31,30 @@ const Results = () => {
   }, [])
   console.log(Users)
 
-  // const testsize = 10;
-  // if(testsize <= 0) throw "Error";
-  // const arr=[]
-  // for( let i=0; i< Users[2].winnerNumber.length; i += testsize ) {
-
-  //   const users = Users[2].winnerNumber.slice(i, i+ testsize);
-  //   console.log(users)
-  // }
-
-  
-  const testrows = [...Array( Math.ceil(Users[0].winnerNumber.length / 10) )];
-
-  const productRows = testrows.map( (row, idx) => Users[0].winnerNumber.slice(idx * 10, idx * 10 +10) );
-  console.log(productRows)
-  // map the rows as div.row
-  // for ( let i=0; i<testrows.length; i++ ) {
-  //   testrows[i] = [...Array(10)];
-  //   console.log(testrows[i])
-  // }
-
-
-  const sampleData = [
-    
-    {
-      productRows,
-    },
-  ];
-
-  // for(let i=0; i<productRows.length; i++) {
-  //   const datat = sampleData[0].productRows[i];
-  // }
-  const data = React.useMemo(
-    () => [
-      sampleData[0],
-    ],
-    []
-  );
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "",
-        accessor: "col1", // accessor is the "key" in the data
-      },
-      {
-        Header: "",
-        accessor: "col2",
-      },
-      {
-        Header: " ",
-        accessor: "col3", // accessor is the "key" in the data
-      },
-      {
-        Header: "",
-        accessor: "col4", // accessor is the "key" in the data
-      },
-      {
-        Header: "",
-        accessor: "col5",
-      },
-      {
-        Header: " ",
-        accessor: "col6", // accessor is the "key" in the data
-      },
-      {
-        Header: "",
-        accessor: "col7", // accessor is the "key" in the data
-      },
-      {
-        Header: "",
-        accessor: "col8",
-      },
-      {
-        Header: " ",
-        accessor: "col9", // accessor is the "key" in the data
-      },
-      {
-        Header: " ",
-        accessor: "col10", // accessor is the "key" in the data
-      },
-    ],
-    []
-  );
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
-
-  const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}  -  ${current.getHours()}:${current.getMinutes()}`;
-  //We can use setInterval to update the time every 15 minutes
-//   let timer = setInterval(function() {
-    // we can write our code here
-//     console.log('done');
-//   }, 1000*60*15);
-
+  const LoginComponentWithNavigation = withNavigation(LoginComponent);
   const columns1 = [
     { field: 'drawTime', headerName: 'Sr No', width: 100, headerAlign: 'center', align: 'center' },
     { field: 'date', headerName: 'Date', width: 100 , headerAlign: 'center', align: 'center'},
     { field: '_1_100', headerName: '1-100', width: 80, headerAlign: 'center', align: 'center'},
     { field: '_101_200', headerName: '101-200', width: 80, headerAlign: 'center', align: 'center'},
-    { field: '_201_300', headerName: '201-300', width: 80, headerAlign: 'center', align: 'center'}
+    { field: '_201_300', headerName: '201-300', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_301_400', headerName: '301-400', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_401_500', headerName: '401-500', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_501_600', headerName: '501-600', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_601_700', headerName: '601-700', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_701_800', headerName: '701-800', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_801_900', headerName: '801-900', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_901_1000', headerName: '901-1000', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1001_1100', headerName: '1001-1100', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1101_1200', headerName: '1101-1200', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1201_1300', headerName: '1201-1300', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1301_1400', headerName: '1301-1400', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1401_1500', headerName: '1401-1500', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1501_1600', headerName: '1501-1600', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1601_1700', headerName: '1601-1700', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1701_1800', headerName: '1701-1800', width: 80, headerAlign: 'center', align: 'center'},
+    { field: '_1801_1900', headerName: '1801-1900', width: 80, headerAlign: 'center', align: 'center'},
+    
   ]
 
   return (
@@ -149,9 +62,14 @@ const Results = () => {
       <center>
         <Card style={{ width: "97%", marginTop: "5%" }}>
           <CardHeader title="Result" />
+          <Button
+            variant="contained"
+            color="success"
+            style={{ float:"right", marginRight: "5%" ,marginTop: "2%"}}
+          >
+          <Link to='/login' style={{color:'white'}}>
+          Login</Link></Button>
           <Divider style={{marginBottom: "15px"}} />
-          {/* Show current date */}
-          <h3>{date}</h3>
           <CardContent className="table-responsive">
           <DataGrid
                       getRowId={(row) => row.drawTime}
@@ -159,58 +77,13 @@ const Results = () => {
                       rows={Users}
                       columns={columns1}
                     />
-            {/* to get many tables we need to map the data */}
-              {/* <table
-                {...getTableProps()}
-                style={{
-                  border: "solid 1px black",
-                  width: "100%",
-                  backgroundColor: "#B4FF9F",
-                  textAlign: "center",
-                }}
-              >
-                <thead>
-                  {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                      {headerGroup.headers.map((column) => (
-                        <th
-                          {...column.getHeaderProps()}
-                          style={{
-                            borderBottom: "solid 3px red",
-                            color: "black",
-                          }}
-                        >
-                          {column.render("Header")}
-                        </th>
-                      ))}
-                    </tr>
-                  ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                  {rows.map((row) => {
-                    prepareRow(row);
-                    return (
-                      <tr {...row.getRowProps()}>
-                        {row.cells.map((cell) => {
-                          return (
-                            <td
-                              {...cell.getCellProps()}
-                              style={{
-                                padding: "10px",
-                                border: "solid 1px gray",
-                              }}
-                            >
-                              {cell.render("Cell")}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table> */}
+            
           </CardContent>
         </Card>
+        <Routes>
+                       
+              <Route path="/login" exact element={<LoginComponentWithNavigation />}/> 
+        </Routes>
       </center>
     </>
   );
