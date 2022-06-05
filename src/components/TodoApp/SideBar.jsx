@@ -42,7 +42,6 @@ import Drawdetails from "../components/reports/drawdetails.jsx";
 import RetailerTicket from "../components/reports/retailerTickets.jsx";
 import CommissionReport from '../TodoApp/CommissionReport.jsx'
 import ManageAdmin from "./ManageAdmin.jsx";
-import Results from "./Results";
 
 
 const SideBar = () => {
@@ -50,6 +49,7 @@ const SideBar = () => {
   const [isContentToggled, setIsContentToggled] = useState(window.matchMedia("max-width: 768px").matches, false);
 
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -374,7 +374,7 @@ const SideBar = () => {
       {/* </div> */}
     </>
       <div className="wrapper">
-
+{/* Todo: SideBar Bugs */}
         {/* <!-- Sidebar  --> */}
         {isContentToggled && (
         <nav id="sidebar">
