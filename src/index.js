@@ -10,12 +10,10 @@ axios.interceptors.request.use(
   (req) => {
       if(AuthenticationService.isUserLoggedIn()){
         req.headers.Authorization = AuthenticationService.getAuthItem()
-        console.log('global interceptor'+ req.headers.Authorization);
       }
      return req;
   },
   (err) => {
-      console.log('rrrrrrrr'+err)
      return Promise.reject(err);
   }
 );

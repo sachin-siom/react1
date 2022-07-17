@@ -9,8 +9,6 @@ const HeaderComponent = () => {
 
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
-    console.log(''+isUserLoggedIn);
-
         return (
             <>
             {isUserLoggedIn && <SideBar/>}

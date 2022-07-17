@@ -32,6 +32,7 @@ class DrawDetails extends React.Component {
       data: [],
       dropDownValue: "",
       startDate: new Date(),
+      error: "",
     };
     
     this.handleChange = this.handleChange.bind(this);
@@ -132,7 +133,6 @@ class DrawDetails extends React.Component {
         <center>
           <Card style={{ width: "95%", top: 0 }}>
             <CardHeader
-              // subheader="Manage "
               title="Draw Details"
             />
             <Divider />
@@ -144,6 +144,7 @@ class DrawDetails extends React.Component {
                   sm={18}
                   xs={20}
                 >
+                  <div className="col-sm-10">{this.state.error}</div>
                   <div className="col-sm-10">
                     <RetailerDropDown parentCallback={this.handleCallback} />
                   </div>
@@ -215,6 +216,11 @@ class DrawDetails extends React.Component {
   }
 
   submitData() {
+    if (this.state.dropDownValue === "" || this.state.dropDownValue == NaN) {
+      this.setState({ error: "Please select retailer drop down" });
+      return;
+    }
+    this.setState({ error: "" });
     AuthenticationService.executeRetailerTicket(
       `${drawDetailsUrl}`,
       new Date(this.state.startDate).toLocaleDateString("sv-SE", {

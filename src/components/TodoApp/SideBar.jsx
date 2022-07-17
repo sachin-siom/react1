@@ -33,7 +33,7 @@ import withParams from "./WithParams.jsx";
 
 const SideBar = () => {
 
-  const [isContentToggled, setIsContentToggled] = useState(window.matchMedia("max-width: 768px").matches, false);
+  const [isContentToggled, setIsContentToggled] = useState(window.matchMedia('(max-width: 768px)').matches, false);
 
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
@@ -139,7 +139,7 @@ const SideBar = () => {
             <div className="container-fluid" >
 
               <button
-                onClick={() => setIsContentToggled(true)}
+                onClick={() => isContentToggled == true? setIsContentToggled(false): setIsContentToggled(true)}
                 className="btn btn-info"
                 type="button"
                 id="sidebarCollapse"

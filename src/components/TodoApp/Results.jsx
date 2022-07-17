@@ -58,19 +58,23 @@ const Results = () => {
     return (c);
 }
 
+function pad(n) {
+  var s = "000" + n;
+  return s.substr(s.length-4);
+}
+
   return (
     <>
     <center>                 
       {Users.map((item) => (
         <div>
           <h2>{item.drawTime}</h2>
-          <table style={{width: "90%", height:"70px",border:"30px", textAlign:"center"}}>
+          <table style={{width: "90%", height:"70px",border:"30px", textAlign:"center", backgroundColor: rainbow(Math.random() * 4 ,Math.random() * 5),}}>
             {splitArray(Object.values(item.winnerNumber), 10).map((val) => (
               <tr>
                 {Object.values(val).map((val) => <td style={{
-                width: "10%",
-                backgroundColor: rainbow(Math.random() * 4 ,Math.random() * 5),
-                border: "1px solid black", textAlign:"center"}}>{val}</td>)
+                width: "10%",                
+                border: "2px solid black", textAlign:"center"}}>{pad(val)}</td>)
                 }</tr>)
             )}
           </table>&nbsp;
