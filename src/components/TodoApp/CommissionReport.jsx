@@ -1,13 +1,6 @@
-import React, { Component, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import AuthenticationService from "./AuthenticationService.js";
-import { DataGrid, GridToolbar,GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
-import { commissionReportUrl } from "./Constant.js";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import RetailerDropDown from "./RetailerDropDown.jsx";
 import {
   Button,
   Card,
@@ -15,8 +8,13 @@ import {
   CardHeader,
   Divider,
   Grid,
-  TextField,
+  TextField
 } from "@mui/material";
+import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
+import React from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import AuthenticationService from "./AuthenticationService.js";
+import { commissionReportUrl } from "./Constant.js";
 
 class CommissionReport extends React.Component {
   constructor(props) {

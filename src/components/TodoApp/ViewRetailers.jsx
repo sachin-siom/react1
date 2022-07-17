@@ -1,12 +1,4 @@
-import React, { Component } from "react";
-import AuthenticationService from "./AuthenticationService.js";
-import { getAllRetailer } from './Constant'
-import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
-import { enableRetailer, disableRetailer, registerMac, changePasswordUrl } from './Constant'
-import AddRetailerBalance from './AddRetailerBalance';
-
 import {
-  Box,
   Button,
   Card,
   CardContent,
@@ -14,6 +6,11 @@ import {
   Divider,
   Grid
 } from "@mui/material";
+import { DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
+import React, { Component } from "react";
+import AuthenticationService from "./AuthenticationService.js";
+import { changePasswordUrl, disableRetailer, enableRetailer, getAllRetailer, registerMac } from './Constant';
+
 
 class ViewRetailers extends Component {
 

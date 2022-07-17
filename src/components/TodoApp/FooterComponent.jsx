@@ -1,10 +1,4 @@
 import React, { Component } from "react";
-import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom' 
-import withNavigation from './WithNavigation.jsx'
-import withParams from "./WithParams.jsx"
-import AuthenticationService from "./AuthenticationService.js";
-import AuthenticatedRoute from './AuthenticatedRoute'
-import LoginComponent from "./LoginComponent.jsx";
 
 class FooterComponent extends Component{
     render() {
