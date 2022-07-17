@@ -144,7 +144,9 @@ class DrawDetails extends React.Component {
                   sm={18}
                   xs={20}
                 >
-                  <div className="col-sm-10">{this.state.error}</div>
+                  {this.state.error && (
+                    <div className="alert alert-danger">Please select retailer drop down</div>
+                  )}
                   <div className="col-sm-10">
                     <RetailerDropDown parentCallback={this.handleCallback} />
                   </div>
