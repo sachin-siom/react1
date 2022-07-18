@@ -61,7 +61,6 @@ class AuthenticationService {
     registerSuccessfulLogin(username, password){
         let basicAuth = this.createBasicAuthToken(username, password)
         sessionStorage.setItem('authenticatedUser', basicAuth)
-       // this.setupAxiosInterceptor(basicAuth);
     }
 
     logout(){
@@ -89,18 +88,6 @@ class AuthenticationService {
                 return config;
             }
         );
-
-        /*axios.interceptors.response.use((response) => {
-           
-            if (response.config.parse) {
-                //perform the manipulation here and change the response object
-            }
-            return response;
-        }, (error) => {
-            alert(error)
-            return Promise.reject(error.message);
-        });*/
-        //alert("You are not authorized");
     }
 }
 

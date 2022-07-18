@@ -64,7 +64,7 @@ class AddRetailerBalance extends Component {
       "balance": this.state.balance
     }
     AuthenticationService.executeRetailerBalance(addRetailerBalance, this.state.retailerid, balanceData)
-      .then((response) => { this.setState({ balanceUpdated: true }); this.handleChange(); console.log('balance updated successfully') })
+      .then((response) => { this.setState({ balanceUpdated: true }); console.log('balance updated successfully') })
       .catch((error) => { this.setState({ balanceNotUpdated: true }); console.log('balance update failure' + error) })
   }
 
@@ -102,7 +102,7 @@ class AddRetailerBalance extends Component {
       balance: ''
     })
     this.resetStatus();
-    this.props.parentCallback();
+    //this.props.parentCallback();
   }
 
   resetStatus() {

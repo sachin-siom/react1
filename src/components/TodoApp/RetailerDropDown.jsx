@@ -1,10 +1,8 @@
+import InputLabel from '@mui/material/InputLabel';
+import NativeSelect from '@mui/material/NativeSelect';
 import { Component } from "react";
 import AuthenticationService from "./AuthenticationService";
-import { onlyRetailerIds } from './Constant'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
-import NativeSelect from '@mui/material/NativeSelect';
-import InputLabel from '@mui/material/InputLabel';
+import { onlyRetailerIds } from './Constant';
 
 
 class RetailerDropDown extends Component {

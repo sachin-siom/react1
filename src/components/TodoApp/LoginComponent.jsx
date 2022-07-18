@@ -1,14 +1,12 @@
-import React, { Component } from "react";
-import AuthenticationService from "./AuthenticationService.js";
-import Typography from "@mui/material/Typography";
 import {
   Button,
   Card,
-  CardContent,
-  Grid,
-  TextField,
-  Divider
+  CardContent, Divider, Grid,
+  TextField
 } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import React, { Component } from "react";
+import AuthenticationService from "./AuthenticationService.js";
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
@@ -30,17 +28,6 @@ class LoginComponent extends Component {
   }
 
   loginClicked() {
-    //dummy, dummy
-    /*if(){
-            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
-            //this.props.history.push("/welcome")
-            this.props.navigate(`/welcome/${this.state.username}`)
-            this.setState({hasLoginFailed : false})
-            this.setState({showSuccessMsg : true})
-        } else {
-            this.setState({hasLoginFailed : true})
-            this.setState({showSuccessMsg : false})
-        }*/
     AuthenticationService.executeBasicAuthService(
       this.state.username,
       this.state.password
@@ -58,16 +45,6 @@ class LoginComponent extends Component {
       });
   }
 
-  // handleUserNameChange (event) {
-  //     console.log(event.target.value)
-  //     this.setState({[event.target.name] : event.target.value})
-  // }
-
-  // handlePasswordChange (event) {
-  //     console.log(event.target.value)
-  //     this.setState({password : event.target.value})
-  // }
-
   render() {
     return (
       <div>
@@ -80,10 +57,6 @@ class LoginComponent extends Component {
                 item
                 md={16}
                 sm={18}
-                // sx={{
-                //   display: "flex",
-                //   flexDirection: "column",
-                // }}
                 xs={20}
               >
         <center>
@@ -134,9 +107,6 @@ class LoginComponent extends Component {
               style={{ margin: 8, backgroundColor: "white" }}
             />
             <br />
-            {/* User Name: <input type="text" name = "username" value={this.state.username} onChange = {this.handleChange}/> */}
-            {/* Password: <input type="password" name = "password" value={this.state.password} onChange = {this.handleChange}/> */}
-
             <Button
               variant="contained"
               color="success"
@@ -156,11 +126,5 @@ class LoginComponent extends Component {
     );
   }
 }
-
-// const styles = {
-//     TextField : {
-//         margin : "10px"
-//     }
-// }
 
 export default LoginComponent;

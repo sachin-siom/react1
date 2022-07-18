@@ -185,7 +185,9 @@ class RetailerDetails extends React.Component {
             <CardContent className="table-responsive">
               <Grid container spacing={6} wrap="wrap">
                 <Grid item md={16} sm={18} xs={20}>
-                  <div className="col-sm-10">{this.state.error}</div>
+                {this.state.error && (
+                    <div className="alert alert-danger">Please select retailer drop down</div>
+                  )}
                   <div className="col-sm-10">
                     <RetailerDropDown parentCallback={this.handleCallback} />
                   </div>

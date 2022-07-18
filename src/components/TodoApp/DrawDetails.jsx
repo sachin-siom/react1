@@ -1,20 +1,6 @@
-import React, { Component, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import AuthenticationService from "./AuthenticationService.js";
-import {
-  DataGrid,
-  GridToolbarContainer,
-  GridToolbarExport,
-} from "@mui/x-data-grid";
-
-import clsx from "clsx";
-import { drawDetailsUrl } from "./Constant";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import RetailerDropDown from "./RetailerDropDown.jsx";
-
 import {
   Box,
   Button,
@@ -23,8 +9,21 @@ import {
   CardHeader,
   Divider,
   Grid,
-  TextField,
+  TextField
 } from "@mui/material";
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarExport
+} from "@mui/x-data-grid";
+import clsx from "clsx";
+import React from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import AuthenticationService from "./AuthenticationService.js";
+import { drawDetailsUrl } from "./Constant";
+import RetailerDropDown from "./RetailerDropDown.jsx";
+
+
 
 class DrawDetails extends React.Component {
   constructor(props) {
@@ -33,6 +32,7 @@ class DrawDetails extends React.Component {
       data: [],
       dropDownValue: "",
       startDate: new Date(),
+      error: "",
     };
     
     this.handleChange = this.handleChange.bind(this);
@@ -133,7 +133,6 @@ class DrawDetails extends React.Component {
         <center>
           <Card style={{ width: "95%", top: 0 }}>
             <CardHeader
-              // subheader="Manage "
               title="Draw Details"
             />
             <Divider />
@@ -143,12 +142,11 @@ class DrawDetails extends React.Component {
                   item
                   md={16}
                   sm={18}
-                  // sx={{
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  // }}
                   xs={20}
                 >
+                  {this.state.error && (
+                    <div className="alert alert-danger">Please select retailer drop down</div>
+                  )}
                   <div className="col-sm-10">
                     <RetailerDropDown parentCallback={this.handleCallback} />
                   </div>
@@ -220,6 +218,11 @@ class DrawDetails extends React.Component {
   }
 
   submitData() {
+    if (this.state.dropDownValue === "" || this.state.dropDownValue == NaN) {
+      this.setState({ error: "Please select retailer drop down" });
+      return;
+    }
+    this.setState({ error: "" });
     AuthenticationService.executeRetailerTicket(
       `${drawDetailsUrl}`,
       new Date(this.state.startDate).toLocaleDateString("sv-SE", {
