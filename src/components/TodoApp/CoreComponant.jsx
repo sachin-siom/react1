@@ -14,7 +14,7 @@ import withParams from "./WithParams.jsx";
 class CoreComponant extends Component{
     render() {
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
-        const WelcomeComponentWithParams = withParams(WelcomeComponent);
+        // const WelcomeComponentWithParams = withParams(WelcomeComponent);
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
         return (
             <div className="TodoApp">

@@ -36,43 +36,64 @@ const SideBar = () => {
   const [isContentToggled, setIsContentToggled] = useState(window.matchMedia('(max-width: 768px)').matches, false);
 
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  
   const WelcomeComponentWithParams = withParams(WelcomeComponent);
   return (
     <>
-      <>
-      </>
       <div className="wrapper">
+{/* Todo: SideBar Bugs */}
+        {/* <!-- Sidebar  --> */}
         {isContentToggled && (
-          <nav id="sidebar">
-            <div className="sidebar-header">
-              <h3>BhagyaLaxmi Lottery</h3>
-            </div>
+        <nav id="sidebar">
+          <div className="sidebar-header">
+            {/* <img src={logo} height="150" width="150"alt="Logo" /> */}
+            <h3>BhagyaLaxmi Lottery</h3>
+          </div>
 
-            <ul className="list-unstyled components">
-              <p>Manage Points</p>
-              <li className="active">
-                <Link className="nav-link" to="/addRetailer"
-                  data-toggle="collapse"
-                  aria-expanded="false"
-                >
-                  Add User
-                </Link>
-              </li>
-              <li>
-                <Link className="nav-link" to="/viewRetailers" >
+          <ul className="list-unstyled components">
+            <p>Manage Points</p>
+            <li className="active">
+            <Link className="nav-link" to="/addRetailer" 
+                data-toggle="collapse"
+                aria-expanded="false"
+              >
+                Add User
+              </Link>
+            </li>
+            <li>
+            <Link className="nav-link" to="/viewRetailers" >
+              
+                View Retailers
+            </Link>
+            </li>
 
-                  View Retailers
-                </Link>
+            <li>
+              
+            <Link className="nav-link" to="/addRetailerBalance">
+              
+                 Add  Balance
+            </Link>
+            </li>
+            <li>
+            <Link className="nav-link" to="/manageAdmin" >
+              
+                 Manage Admin
+              
+            </Link>
+            </li>
+            <li>
+
+            <Link className="nav-link" to="/drawDetails" >
+              
+               Draw Details
+            </Link>
+            </li> 
+            <li>
+
+              <Link className="nav-link" to="/retailerTickets" >
+                
+              Retailer Ticket
+              </Link>
               </li>
 
               <li>
@@ -139,7 +160,7 @@ const SideBar = () => {
             <div className="container-fluid" >
 
               <button
-                onClick={() => isContentToggled == true? setIsContentToggled(false): setIsContentToggled(true)}
+                onClick={() => isContentToggled === true? setIsContentToggled(false): setIsContentToggled(true)}
                 className="btn btn-info"
                 type="button"
                 id="sidebarCollapse"
