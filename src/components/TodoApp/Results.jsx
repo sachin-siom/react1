@@ -58,6 +58,11 @@ const Results = () => {
     return (c);
 }
 
+function getRandomColor() {
+  var color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+  return color;
+}
+
 function pad(n) {
   var s = "000" + n;
   return s.substr(s.length-4);
@@ -69,12 +74,12 @@ function pad(n) {
       {Users.map((item) => (
         <div>
           <h2>{item.drawTime}</h2>
-          <table style={{width: "90%", height:"70px",border:"30px", textAlign:"center", backgroundColor: rainbow(Math.random() * 4 ,Math.random() * 5),}}>
+          <table style={{width: "90%", height:"70px",border:"30px", textAlign:"center", backgroundColor: getRandomColor(),}}>
             {splitArray(Object.values(item.winnerNumber), 10).map((val) => (
               <tr>
                 {Object.values(val).map((val) => <td style={{
                 width: "10%",                
-                border: "2px solid black", textAlign:"center"}}>{pad(val)}</td>)
+                border: "2px solid black", textAlign:"center", paddingBottom: "7px", paddingTop:"7px" ,textAlign:"center", fontWeight:"bold"}}>{pad(val)}</td>)
                 }</tr>)
             )}
           </table>&nbsp;
