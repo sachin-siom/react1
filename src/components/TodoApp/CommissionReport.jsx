@@ -21,6 +21,8 @@ class CommissionReport extends React.Component {
     super(props);
     this.state = {
       data: [],
+      totalCommission: '',
+      totalAdminProfit: '',
       fDate: new Date(),
       tDate: new Date(),
       error: "",
@@ -70,9 +72,10 @@ class CommissionReport extends React.Component {
   }
 
   populateDataInTable(response) {
-    console.log(response.data.commissionResponseList);
     this.setState({
       data: response.data.commissionResponseList,
+      totalCommission: response.data.totalCommission,
+      totalAdminProfit: response.data.totalProfit
     });
   }
 
@@ -136,7 +139,7 @@ class CommissionReport extends React.Component {
                 </div>
                 <div
                   style={{
-                    height: 700,
+                    height: 500,
                     width: "100%",
                     textAlign: "center",
                   }}
@@ -148,6 +151,16 @@ class CommissionReport extends React.Component {
                     pageSize={100}
                     components={{ Toolbar: this.CustomToolbar }}
                   />
+                </div>
+                <div
+                  style={{
+                    height: 700,
+                    width: "100%",
+                    textAlign: "center",
+                  }}
+                >
+                 <b> Total Commission: {this.state.totalCommission}
+                  <br></br>Admin Profit: {this.state.totalAdminProfit}</b>
                 </div>
               </Grid>
             </Grid>
