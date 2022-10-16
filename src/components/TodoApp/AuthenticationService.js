@@ -16,6 +16,10 @@ class AuthenticationService {
         return axios.get(`${url}/${fdate}/${tdate}`)
     }
 
+    executLoadReport(url){
+        return axios.get(`${url}`)
+    }
+
     executeRetailerBalance(url, retailId, data){
         return axios.post(`${url}/${retailId}`, data)
     }

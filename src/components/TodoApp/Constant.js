@@ -19,4 +19,5 @@ export const registerMac = 'http://13.234.128.25:80/api/admin/registerMac'
 export const changePasswordUrl = 'http://13.234.128.25:80/api/admin/manageRetailer/changepassword'
 export const onlyRetailerId = 'http://13.234.128.25:80/api/admin/retailer'
 export const openController = 'http://13.234.128.25:80/api/open/winnerListByDateNew'
+export const loadReport = 'http://13.234.128.25:80/api/admin/load'
 

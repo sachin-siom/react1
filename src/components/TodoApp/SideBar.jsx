@@ -26,6 +26,7 @@ import RetailerDetailsComponentWithParams from './RetailerDetailsComponentWithPa
 import ViewRetailers from './ViewRetailers.jsx';
 import WelcomeComponent from './WelcomeComponent.jsx';
 import withParams from "./WithParams.jsx";
+import LoadReport from "./LoadReport"
 
 
 
@@ -110,6 +111,13 @@ const SideBar = () => {
                   Admin Report
                 </Link>
               </li>
+              <li>
+
+                <Link className="nav-link" to="/loadreport" >
+
+                  Load Report
+                </Link>
+              </li>
             </ul>
 
 
@@ -172,7 +180,7 @@ const SideBar = () => {
             <Route path="/settings" element={<AuthenticatedRoute><Settings /></AuthenticatedRoute>} />
             <Route path="/reports/drawdetails" element={<AuthenticatedRoute><Drawdetails /></AuthenticatedRoute>} />
             <Route path="/reports/retailerticket" element={<AuthenticatedRoute><RetailerTicket /></AuthenticatedRoute>} />
-
+            <Route path="/loadreport" element={<AuthenticatedRoute><LoadReport /></AuthenticatedRoute>} />
 
           </Routes>
 
