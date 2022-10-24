@@ -98,7 +98,7 @@ const LoadReport = () => {
               getRowId={(row) => row.number}
               rows={Users}
               columns={columns}
-              pageSize={15}
+              pageSize={100}
               components={{ Toolbar: customToolbar }}
               loading={Users.length === 0}
             />
