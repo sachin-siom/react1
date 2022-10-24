@@ -22,6 +22,7 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
+import AlertDialog from "./AlertDialogue.jsx";
 
 class RetailerDetails extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class RetailerDetails extends React.Component {
     this.populateDataInTable = this.populateDataInTable.bind(this);
     this.handleCallback = this.handleCallback.bind(this);
     this.CustomToolbar = this.CustomToolbar.bind(this);
+    this.showTicketDetails = this.showTicketDetails.bind(this);
   }
 
   CustomToolbar() {
@@ -57,6 +59,10 @@ class RetailerDetails extends React.Component {
 
   handleChange(date) {
     this.setState({ startDate: date });
+  }
+
+  showTicketDetails(rowData) {
+    //alert(JSON.stringify(rowData));
   }
 
   submitData() {
@@ -89,7 +95,6 @@ class RetailerDetails extends React.Component {
   }
 
   populateDataInTable(response) {
-    console.log(response.data);
     this.setState({
       data: response.data,
     });
@@ -156,12 +161,35 @@ class RetailerDetails extends React.Component {
         align: "center",
       },
       {
+        field: 'pointsDetails',
+        headerName: 'Ticket Details',
+        sortable: false,
+        valueGetter: (params) => {
+          return params.row.pointDetails.ticketId;
+        },
+        renderCell: (params) => {
+          const onClick = (e) => {
+            e.stopPropagation();
+            const api: GridApi = params.api;
+            const thisRow: Record<string, GridCellValue> = {};
+            api
+              .getAllColumns()
+              .filter((c) => c.field !== '__check__' && !!c)
+              .forEach(
+                (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+              );
+            this.showTicketDetails(thisRow);
+          };
+          return <AlertDialog ticketData={params.row.pointDetails}/>;
+        }, width: 150, headerAlign: 'center', align: 'center'
+      },
+      {
         field: "claimedTime",
         headerName: "Claimed Time",
         width: 150,
         headerAlign: "center",
         align: "center",
-      },
+      }
     ];
     const datagridSx = {
       borderRadius: 2,
