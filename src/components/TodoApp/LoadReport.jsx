@@ -61,28 +61,28 @@ const LoadReport = () => {
     {
       field: "number",
       headerName: "Number",
-      width: 400,
+      width: 200,
       headerAlign: "center",
       align: "center",
     },
     {
       field: "betCount",
       headerName: "Bet Count",
-      width: 400,
+      width: 200,
       headerAlign: "center",
       align: "center",
     },
     {
       field: "betAmount",
       headerName: "Bet Amount",
-      width: 400,
+      width: 200,
       headerAlign: "center",
       align: "center",
     },
     {
       field: "retailId",
       headerName: "Retail Id",
-      width: 400,
+      width: 200,
       headerAlign: "center",
       align: "center",
     }]
