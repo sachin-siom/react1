@@ -1,6 +1,6 @@
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
-import { Component } from "react";
+import React, { Component }  from 'react';
 import AuthenticationService from "./AuthenticationService";
 import { onlyRetailerIds } from './Constant';
 
