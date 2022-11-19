@@ -91,10 +91,10 @@ const LoadReport = () => {
     <>
     <h2>Total Collection: {coll}</h2>
       <center>
-        <div style={{ display: 'flex', height: '80%', width: '80%' }}>
+        <div style={{ display: 'flex', height: '10%', width: '100%' }}>
             <DataGrid
               autoHeight {...Users}
-              style={{ display: "flex", height: '80%' }}
+              style={{ display: "flex", height: '100%' }}
               getRowId={(row) => row.number}
               rows={Users}
               columns={columns}
