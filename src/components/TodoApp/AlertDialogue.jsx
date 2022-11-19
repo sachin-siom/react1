@@ -27,6 +27,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     var data = JSON.parse(obj.points).map((details, i) => (
         Object.entries(details.points).map(([k, v]) => `${k}:${v}  `)
     ))
+
     const handleClose = () => {
         onClose();
     };
@@ -54,6 +55,12 @@ function SimpleDialog(props: SimpleDialogProps) {
                 <TextField id="outlined-basic" label="Deleted" variant="outlined" value={obj.deleted} InputProps={{
                     readOnly: true,
                 }} />
+                <TextField id="outlined-basic" label="Draw Time" variant="outlined" value={obj.creationTime} InputProps={{
+                    readOnly: true,
+                }} />
+                {/* <TextField id="outlined-basic" label="Deleted" variant="outlined" value={obj.drawTime} InputProps={{
+                    readOnly: true,
+                }} /> */}
                 </Box>
                 <Box
                 component="form"
@@ -63,13 +70,31 @@ function SimpleDialog(props: SimpleDialogProps) {
                 noValidate
                 autoComplete="off"
             >
-                <TextareaAutosize
+{/*                 <TextareaAutosize
                     variant='outlined'
                     label="Bet No"
                     aria-label="Ticket No"
                     placeholder="Ticket No"
                     value={data}
-                />
+                /> */}
+                <table style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid'}}>
+        <tr style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid'}}>
+          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>No</th>
+          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>Column 1</th>
+          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>Column 2</th>
+          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>Column 3</th>
+        </tr>
+        {data.map((val, key) => {
+          return (
+            <tr key={key}>
+              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>{key}</td>
+              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center' }}>{val[0]}</td>
+              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>{val[1]}</td>
+              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>{val[2]}</td>
+            </tr>
+          )
+        })}
+      </table>
                 </Box>
             
         </Dialog>
