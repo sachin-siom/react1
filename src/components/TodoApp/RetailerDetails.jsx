@@ -180,7 +180,7 @@ class RetailerDetails extends React.Component {
               );
             this.showTicketDetails(thisRow);
           };
-          return <AlertDialog ticketData={params.row.pointDetails}/>;
+          return <AlertDialog ticketData={JSON.stringify(params.row)}/>;
         }, width: 150, headerAlign: 'center', align: 'center'
       },
       {

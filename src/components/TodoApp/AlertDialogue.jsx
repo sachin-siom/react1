@@ -23,11 +23,11 @@ export interface SimpleDialogProps {
 
 function SimpleDialog(props: SimpleDialogProps) {
     const { onClose, open, ticketData } = props;
-    const obj = JSON.parse(JSON.stringify(ticketData))
-    var data = JSON.parse(obj.points).map((details, i) => (
-        Object.entries(details.points).map(([k, v]) => `${k}:${v}  `)
+    const obj = JSON.parse(JSON.stringify(ticketData));
+    var data = JSON.parse(obj.pointDetails.points).map((details, i) => (
+        Object.entries(details.points).sort().map(([k, v]) => `${k} | ${v*details.winningMultiplier} `)
     ))
-
+    
     const handleClose = () => {
         onClose();
     };
@@ -43,26 +43,27 @@ function SimpleDialog(props: SimpleDialogProps) {
                 noValidate
                 autoComplete="off"
             >
-                <TextField id="outlined-basic" label="Ticket Id" variant="outlined" value={obj.ticketId} InputProps={{
+                <TextField id="outlined-basic" label="Ticket Id" variant="outlined" value={obj.pointDetails.ticketId} InputProps={{
                     readOnly: true,
                 }} />
-                <TextField id="outlined-basic" label="Retail Id" variant="outlined" value={obj.retailId} InputProps={{
+                <TextField id="outlined-basic" label="Retail Id" variant="outlined" value={obj.pointDetails.retailId} InputProps={{
                     readOnly: true,
                 }} />
-                <TextField id="outlined-basic" label="Total Points" variant="outlined" value={obj.totalPoints} InputProps={{
+                <TextField id="outlined-basic" label="Total Points" variant="outlined" value={obj.pointDetails.totalPoints} InputProps={{
                     readOnly: true,
                 }} />
-                <TextField id="outlined-basic" label="Deleted" variant="outlined" value={obj.deleted} InputProps={{
+                <TextField id="outlined-basic" label="Deleted" variant="outlined" value={(obj.pointDetails.deleted)?'Yes':'No'} InputProps={{
                     readOnly: true,
                 }} />
-                <TextField id="outlined-basic" label="Draw Time" variant="outlined" value={obj.creationTime} InputProps={{
+                <TextField id="outlined-basic" label="Ticket Time" variant="outlined" value={obj.pointDetails.creationTime} InputProps={{
                     readOnly: true,
                 }} />
-                {/* <TextField id="outlined-basic" label="Deleted" variant="outlined" value={obj.drawTime} InputProps={{
+                <TextField id="outlined-basic" label="Draw Time" variant="outlined" value={obj.draw} InputProps={{
                     readOnly: true,
-                }} /> */}
-                </Box>
-                <Box
+                }} />
+
+            </Box>
+            <Box
                 component="form"
                 sx={{
                     '& > :not(style)': { m: 1, width: '100%' },
@@ -70,33 +71,33 @@ function SimpleDialog(props: SimpleDialogProps) {
                 noValidate
                 autoComplete="off"
             >
-{/*                 <TextareaAutosize
+                {/*                 <TextareaAutosize
                     variant='outlined'
                     label="Bet No"
                     aria-label="Ticket No"
                     placeholder="Ticket No"
                     value={data}
                 /> */}
-                <table style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid'}}>
-        <tr style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid'}}>
-          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>No</th>
-          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>Column 1</th>
-          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>Column 2</th>
-          <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>Column 3</th>
-        </tr>
-        {data.map((val, key) => {
-          return (
-            <tr key={key}>
-              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>{key}</td>
-              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center' }}>{val[0]}</td>
-              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>{val[1]}</td>
-              <td style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'text-align':'center'}}>{val[2]}</td>
-            </tr>
-          )
-        })}
-      </table>
-                </Box>
-            
+                <table style={{ "borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid' }}>
+                    <tr style={{ "borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid' }}>
+                    <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'textAlign':'center'}}>Bet No</th>
+                    <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'textAlign': 'center' }}>Qty</th>
+                        {/* <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'textAlign':'center'}}>Column 2</th>
+                        <th style={{"borderWidth":"1px", 'borderColor':"#aaaaaa", 'borderStyle':'solid', 'textAlign':'center'}}>Column 3</th> */}
+                    </tr>
+                    {data.map((key, val) => {
+                        return (
+                            key.map((listValues, index) =>
+                                <tr key={index}>
+                                    <td style={{ "borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid', 'textAlign': 'center' }}>{listValues.split("|")[0]}</td>
+                                    <td style={{ "borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid', 'textAlign': 'center' }}>{listValues.split("|")[1]}</td>
+                                </tr>
+                            )
+                        )
+                    })}
+                </table>
+            </Box>
+
         </Dialog>
     );
 }
@@ -111,16 +112,17 @@ export default function SimpleDialogDemo({ ticketData }) {
     const handleClose = (value: string) => {
         setOpen(false);
     };
-
+    const obj = JSON.parse(ticketData)
+    //console.log(typeof obj +" "+JSON.stringify(obj) +" "+ obj.draw);
     return (
         <div>
             <Button variant="contained" onClick={handleClickOpen} style={{ fontSize: '13px', padding: 5, margin: '1px' }}>
-                {ticketData.ticketId}
+                {obj.ticketid}
             </Button>
             <SimpleDialog
                 open={open}
                 onClose={handleClose}
-                ticketData={ticketData}
+                ticketData={obj}
             />
         </div>
     );
