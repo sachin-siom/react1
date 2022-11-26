@@ -58,8 +58,8 @@ a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 23%;
+    max-width: 23%;
     background: #002776;
     color: #fff;
     transition: all 0.3s;
@@ -101,13 +101,9 @@ a[aria-expanded="true"] {
     background: #6d7fcc;
 }
 
-a[data-toggle="collapse"] {
-    position: relative;
-}
 
 .dropdown-toggle::after {
     display: block;
-    position: absolute;
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
@@ -158,7 +154,7 @@ a.article:hover {
 
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: 2%;
     }
     #sidebar.active {
         margin-left: 0;
